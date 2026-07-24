@@ -8,3 +8,6 @@ coverage/
 .next/
 *.log
 
+_local/
+__pycache__/
+*.pyc

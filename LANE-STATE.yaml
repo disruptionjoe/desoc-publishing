@@ -1,45 +1,178 @@
 schema_version: "2.0"
 owner_id: desoc-publishing
-group: church-of-ai
-updated_at: "2026-07-23T22:38:36-05:00"
-run_ref: RUN-20260723-221004-DESOC-P-001
-bottom_line: "The first local experiment is shaped; implement its synthetic offline producer-to-consumer loop next."
-decision_default: "Advance Lane 2 against the reversible experiment packet without crossing a launch or external-consequence gate."
+updated_at: "2026-07-24T18:19:20-05:00"
+run_ref: RUN-20260724-171230-desoc-progress
+bottom_line: "The offline publishing slice works deterministically; evaluate its producer and consumer behavior next."
+decision_default: "Advance Lane 3 evaluation without selecting a production stack or crossing a launch gate."
 needs_joe: false
 lanes:
   - lane_id: "1"
-    work_status: monitoring
+    work_status: moving
     last_movement: "Selected the first reversible local producer-to-consumer experiment."
     movement_ref: "docs/product/phase-0-first-local-experiment.md; DECISIONS.md#dp-dec-005--first-local-experiment"
     steering_attention: none
+    steering_prompt: "none"
+    steering_ref: "CONSTITUTION.md; STATUS.md"
     light: green
     reason_code: first_experiment_shaped
+    evidence_ref: "docs/product/phase-0-first-local-experiment.md; DECISIONS.md"
+    summary: "The shaped experiment produced working behavior without changing its boundary."
+    evaluated_at: "2026-07-24T18:19:20-05:00"
+    run_ref: RUN-20260724-171230-desoc-progress
     objective: "Refine product hypotheses only when implementation or evaluation produces new evidence."
+    progress_delta: "Implementation preserved the shaped portable-file contract and exposed behavior for evaluation."
+    trend_24h: up
+    confidence: high
     recommendation: "Hold the selected experiment stable until behavior tests it."
+    findings:
+      - "The portable artifact contract supported a dependency-free implementation without framework selection."
+      - "No failure condition forced the slice back to shaping."
+    options:
+      - id: A
+        label: "Hold shape stable"
+        recommended: true
+        description: "Let Lane 3 test the implemented behavior before reshaping."
+      - id: B
+        label: "Refine contract"
+        recommended: false
+        description: "Use only if evaluation exposes a product or export failure."
+      - id: C
+        label: "Shape another slice"
+        recommended: false
+        description: "Lower leverage until the current behavior is evaluated."
+      - id: D
+        label: "Defer"
+        recommended: false
+        description: "No current gate requires deferral."
+    decision_default: "Hold the selected experiment stable pending evaluation."
+    needs_joe: false
   - lane_id: "2"
-    work_status: ready
-    last_movement: "Received a bounded synthetic experiment, data contract, failure rules, and verification harness."
-    movement_ref: "docs/product/phase-0-first-local-experiment.md"
+    work_status: moving
+    last_movement: "Implemented and verified the deterministic offline producer-to-consumer slice."
+    movement_ref: "src/local_experiment.py; tests/test_local_experiment.py"
     steering_attention: none
+    steering_prompt: "none"
+    steering_ref: "CONSTITUTION.md; STATUS.md"
     light: green
-    reason_code: shaped_slice_ready
+    reason_code: offline_slice_verified
+    evidence_ref: "src/local_experiment.py; fixtures/; tests/test_local_experiment.py"
+    summary: "Strict portable fixtures now generate three inspectable views and an equivalent JSON index."
+    evaluated_at: "2026-07-24T18:19:20-05:00"
+    run_ref: RUN-20260724-171230-desoc-progress
     objective: "Build a ready, reversible vertical slice with synthetic fixtures."
-    recommendation: "Implement the dependency-free offline vertical slice."
+    progress_delta: "Added strict loading, escaped rendering, two lineage fixtures, deterministic output, and five tests."
+    scope_position: "First offline vertical slice implemented; production stack remains unselected."
+    trend_24h: up
+    confidence: high
+    recommendation: "Hold implementation stable for Lane 3 evaluation."
+    findings:
+      - "Repeated generation is byte-identical and leaves source fixtures unchanged."
+      - "Unsupported claims, disagreements, lineage, source pointers, and ordering rules remain visible."
+      - "Adding a valid artifact requires only its Markdown and JSON source files."
+    options:
+      - id: A
+        label: "Hand off to evaluation"
+        recommended: true
+        description: "Preserve the verified slice while Lane 3 evaluates product behavior."
+      - id: B
+        label: "Extend implementation"
+        recommended: false
+        description: "Add behavior only when evaluation earns the change."
+      - id: C
+        label: "Select production stack"
+        recommended: false
+        description: "The experiment does not yet justify a production commitment."
+      - id: D
+        label: "Defer"
+        recommended: false
+        description: "No implementation blocker remains."
+    decision_default: "Keep the verified implementation and advance Lane 3."
+    needs_joe: false
   - lane_id: "3"
-    work_status: waiting
-    last_movement: "Evaluation lane established."
-    movement_ref: "LANES.yaml"
-    steering_attention: watch
-    light: yellow
-    reason_code: awaiting_working_behavior
+    work_status: moving
+    last_movement: "Received generated behavior and mechanical evidence from Lane 2."
+    movement_ref: "STATUS.md; tests/test_local_experiment.py"
+    steering_attention: none
+    steering_prompt: "none"
+    steering_ref: "docs/product/phase-0-first-local-experiment.md"
+    light: green
+    reason_code: working_behavior_ready_for_evaluation
+    evidence_ref: "STATUS.md; _local/experiment/; tests/test_local_experiment.py"
+    summary: "The slice is ready for product evaluation against its explicit success and failure conditions."
+    evaluated_at: "2026-07-24T18:19:20-05:00"
+    run_ref: RUN-20260724-171230-desoc-progress
     objective: "Determine whether integrated behavior improves the producer and consumer outcome."
-    recommendation: "Wait for behavior from Lane 2."
+    progress_delta: "Moved from awaiting behavior to an executable evaluation over deterministic generated output."
+    trend_24h: up
+    confidence: high
+    recommendation: "Evaluate the generated producer-consumer loop."
+    findings:
+      - "Mechanical tests establish inspectability and determinism, not product improvement."
+      - "Evaluation can remain local and synthetic inside the current phase."
+    options:
+      - id: A
+        label: "Evaluate current slice"
+        recommended: true
+        description: "Test the actual output against every observable success and failure condition."
+      - id: B
+        label: "Add fixtures first"
+        recommended: false
+        description: "Current fixtures already exercise support, disagreement, and lineage."
+      - id: C
+        label: "Prepare launch"
+        recommended: false
+        description: "Launch remains closed and is not earned by mechanical success."
+      - id: D
+        label: "Defer"
+        recommended: false
+        description: "No dependency prevents local evaluation."
+    decision_default: "Run a bounded Lane 3 evaluation of the current output."
+    needs_joe: false
   - lane_id: A
-    work_status: ready
+    work_status: thin
     last_movement: "Founding governance, validation, and documentation map established."
     movement_ref: "AGENTS.md; GOVERNANCE.md; scripts/validate_repository.py"
     steering_attention: none
+    steering_prompt: "none"
+    steering_ref: "AGENTS.md; GOVERNANCE.md"
     light: green
     reason_code: founding_stewardship_ready
+    evidence_ref: "AGENTS.md; GOVERNANCE.md; scripts/validate_repository.py"
+    summary: "Governance and repository validation remain usable; no stewardship intervention is needed."
+    evaluated_at: "2026-07-24T18:19:20-05:00"
+    run_ref: RUN-20260724-171230-desoc-progress
     objective: "Keep product work and agent process coherent without substituting process for the product."
-    recommendation: "Run stewardship when due and improve process only from observed need."
+    progress_delta: "No stewardship repair was needed; the implementation stayed inside founding gates."
+    trend_24h: flat
+    confidence: high
+    recommendation: "Continue normal stewardship watch."
+    findings:
+      - "Repository validation passes with the new local experiment."
+      - "No launch, participation, identity, payment, or external-action boundary was crossed."
+    options:
+      - id: A
+        label: "Continue normal watch"
+        recommended: true
+        description: "Preserve current governance while product evaluation proceeds."
+      - id: B
+        label: "Review process"
+        recommended: false
+        description: "No observed process failure currently warrants a review."
+      - id: C
+        label: "Expand governance"
+        recommended: false
+        description: "The local experiment does not require new governance."
+      - id: D
+        label: "Defer"
+        recommended: false
+        description: "Normal watch already minimizes attention."
+    decision_default: "Continue normal stewardship watch."
+    needs_joe: false
+    drift_verdict: clean
+    action_counts:
+      mail: 0
+      reconciled: 0
+      integrity_repairs: 0
+      seeds_routed: 0
+      escalations: 0
+    attention_pointer: "nothing needs you"

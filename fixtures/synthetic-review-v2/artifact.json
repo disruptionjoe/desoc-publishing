@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "artifact_id": "synthetic-review-v2",
+  "title": "A Synthetic Test of Open Review, Revised",
+  "producer_display": "Researcher Delta",
+  "created_at": "2026-07-02T12:00:00Z",
+  "version": "2",
+  "supersedes": "synthetic-review-v1",
+  "claims": [
+    {
+      "claim_id": "claim-access",
+      "text": "Portable source files reduce the work required to inspect a research artifact.",
+      "citation_ids": [
+        "citation-benchmark"
+      ]
+    },
+    {
+      "claim_id": "claim-trust",
+      "text": "A producer display label communicates attribution but does not prove authorship.",
+      "citation_ids": [
+        "citation-identity"
+      ]
+    }
+  ],
+  "citations": [
+    {
+      "citation_id": "citation-benchmark",
+      "text": "Synthetic benchmark: three agents recovered the declared relationships from two local files.",
+      "locator": "synthetic://benchmark/open-review-v2"
+    },
+    {
+      "citation_id": "citation-identity",
+      "text": "Synthetic counterexample: an arbitrary display label can be copied without proving control.",
+      "locator": "synthetic://counterexample/display-label"
+    },
+    {
+      "citation_id": "citation-interpretation",
+      "text": "Synthetic review note: visible qualification prevented two readers from treating the label as verified identity.",
+      "locator": "synthetic://review/identity-qualification"
+    }
+  ],
+  "disagreements": [
+    {
+      "disagreement_id": "disagreement-strength",
+      "target_claim_id": "claim-access",
+      "position": "qualifies",
+      "rationale": "Portability aids inspection only when relationships and source pointers remain explicit.",
+      "citation_ids": [
+        "citation-interpretation"
+      ]
+    }
+  ]
+}

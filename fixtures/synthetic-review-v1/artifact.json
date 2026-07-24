@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "artifact_id": "synthetic-review-v1",
+  "title": "A Synthetic Test of Open Review",
+  "producer_display": "Researcher Delta",
+  "created_at": "2026-07-01T12:00:00Z",
+  "version": "1",
+  "supersedes": null,
+  "claims": [
+    {
+      "claim_id": "claim-access",
+      "text": "Portable source files reduce the work required to inspect a research artifact.",
+      "citation_ids": [
+        "citation-benchmark"
+      ]
+    },
+    {
+      "claim_id": "claim-trust",
+      "text": "A producer display label is sufficient proof of authorship.",
+      "citation_ids": []
+    }
+  ],
+  "citations": [
+    {
+      "citation_id": "citation-benchmark",
+      "text": "Synthetic benchmark: three agents recovered the declared relationships from two local files.",
+      "locator": "synthetic://benchmark/open-review-v1"
+    },
+    {
+      "citation_id": "citation-identity",
+      "text": "Synthetic counterexample: an arbitrary display label can be copied without proving control.",
+      "locator": "synthetic://counterexample/display-label"
+    }
+  ],
+  "disagreements": [
+    {
+      "disagreement_id": "disagreement-identity",
+      "target_claim_id": "claim-trust",
+      "position": "contests",
+      "rationale": "The display label communicates a producer claim but does not verify authorship.",
+      "citation_ids": [
+        "citation-identity"
+      ]
+    }
+  ]
+}
