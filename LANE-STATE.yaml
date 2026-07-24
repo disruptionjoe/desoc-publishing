@@ -1,0 +1,46 @@
+schema_version: "2.0"
+owner_id: desoc-publishing
+group: church-of-ai
+updated_at: "2026-07-23T00:00:00-05:00"
+run_ref: founding
+bottom_line: "The public founding system is established; Phase 0 must now earn the first useful local product slice."
+decision_default: "Advance the smallest evidence-supported Phase 0 question without crossing a launch or external-consequence gate."
+needs_joe: false
+lanes:
+  - lane_id: "1"
+    work_status: ready
+    last_movement: "Founding product direction and research agenda established."
+    movement_ref: "CONSTITUTION.md; RESEARCH.md; ROADMAP.md"
+    steering_attention: none
+    light: green
+    reason_code: phase_0_ready
+    objective: "Select the smallest useful producer-to-consumer experiment and define its observable success and failure."
+    recommendation: "Begin bounded Phase 0 research and candidate comparison."
+  - lane_id: "2"
+    work_status: waiting
+    last_movement: "Delivery lane established without prematurely selecting a stack."
+    movement_ref: "LANES.yaml; STATUS.md"
+    steering_attention: watch
+    light: yellow
+    reason_code: awaiting_shaped_slice
+    objective: "Build a ready, reversible vertical slice with synthetic fixtures."
+    recommendation: "Wait for Lane 1 to shape the first local slice."
+  - lane_id: "3"
+    work_status: waiting
+    last_movement: "Evaluation lane established."
+    movement_ref: "LANES.yaml"
+    steering_attention: watch
+    light: yellow
+    reason_code: awaiting_working_behavior
+    objective: "Determine whether integrated behavior improves the producer and consumer outcome."
+    recommendation: "Wait for behavior from Lane 2."
+  - lane_id: A
+    work_status: ready
+    last_movement: "Founding governance, validation, and documentation map established."
+    movement_ref: "AGENTS.md; GOVERNANCE.md; scripts/validate_repository.py"
+    steering_attention: none
+    light: green
+    reason_code: founding_stewardship_ready
+    objective: "Keep product work and agent process coherent without substituting process for the product."
+    recommendation: "Run stewardship when due and improve process only from observed need."
+

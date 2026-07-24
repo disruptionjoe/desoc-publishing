@@ -1,0 +1,39 @@
+# Decision register
+
+## DP-DEC-001 — Founding identity
+
+Date: 2026-07-23  
+Status: ratified
+
+The repository is named `desoc-publishing`, is public from its first commit,
+and uses the ratified Purpose, Passion, and Practice in `CONSTITUTION.md`.
+
+## DP-DEC-002 — Founder-led agent operation
+
+Date: 2026-07-23  
+Status: ratified
+
+Joe retains constitutional authority. Agents may evolve canon and runtime,
+research the product, build and test locally, and improve their own development
+process without waiting for approval at every step. User-facing launch and
+external-consequence gates remain reserved.
+
+## DP-DEC-003 — Product uncertainty is intentional
+
+Date: 2026-07-23  
+Status: ratified
+
+The first vertical slice, technology stack, social-distance mechanism,
+authorship proof, ranking model, and decentralized substrate remain Phase 0
+questions. Founding documents preserve the direction without pretending these
+questions are settled.
+
+## DP-DEC-004 — Lightweight source relationships
+
+Date: 2026-07-23  
+Status: ratified
+
+Other repositories are read-only idea sources, not approval bodies or governed
+dependencies. Any adapted pattern becomes this repository's responsibility and
+must be evaluated against its purpose.
+
