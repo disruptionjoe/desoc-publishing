@@ -16,7 +16,8 @@ explicitly approved public fixtures.
 - Repository: public and active
 - Governance: Joe holds constitutional authority
 - Automation: active through the existing `cai_directed` Repository Work Cycle
-- Application stack: not selected
+- Experimental harness: dependency-free Python and static local output selected
+- Production application stack: not selected
 - Working application: not yet implemented
 - User-facing launch: not authorized
 - Live submissions or participant data: not authorized
@@ -25,14 +26,14 @@ explicitly approved public fixtures.
 
 ## Immediate objective
 
-Produce an evidence-supported Phase 0 graduation packet that:
+Implement the reversible first local experiment specified in
+`docs/product/phase-0-first-local-experiment.md`:
 
-1. identifies the smallest useful producer-to-consumer workflow;
-2. compares credible product and technical approaches;
-3. defines observable product success and failure;
-4. establishes the initial data, safety, and reversibility boundary;
-5. recommends the first local vertical slice and exact verification harness.
+1. accept a synthetic portable Markdown body and JSON manifest;
+2. generate explainable artifact, claim/support, and
+   version/disagreement views;
+3. expose the same relationships in a machine-readable index;
+4. prove deterministic offline generation and repository-native tests.
 
-The packet enables agents to proceed into local implementation under the
-Constitution. It does not authorize a public application launch.
-
+This moves the next executable work to Lane 2. Phase 0 remains active, and the
+experiment does not authorize a public application launch.

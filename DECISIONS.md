@@ -37,3 +37,19 @@ Other repositories are read-only idea sources, not approval bodies or governed
 dependencies. Any adapted pattern becomes this repository's responsibility and
 must be evaluated against its purpose.
 
+## DP-DEC-005 — First local experiment
+
+Date: 2026-07-23
+
+Status: active experiment decision
+
+The first product experiment is a dependency-free local generator over a
+portable Markdown body and JSON manifest. It must produce an artifact view, a
+claim-and-support view, a version-and-disagreement view, and an equivalent
+machine-readable index from synthetic fixtures.
+
+This selects a reversible experimental harness, not a production stack,
+identity or priority proof, service launch, content-admission rule, or
+decentralized backend. The decision is reversed if implementation cannot meet
+the success, failure, export, determinism, and safety conditions in
+`docs/product/phase-0-first-local-experiment.md`; negative evidence is retained.
