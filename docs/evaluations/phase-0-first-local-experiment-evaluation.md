@@ -6,7 +6,7 @@ Evaluated: 2026-07-24
 
 Run: `RUN-20260724-221205-desoc-progress`
 
-Disposition: revise and return to Lane 1 shaping
+Disposition: revise and return to Lane 1 problem shaping
 
 ## Bottom line
 
@@ -92,7 +92,7 @@ targeted revision before further stack or launch discussion.
 
 ## Earned reshape requirements
 
-Lane 1 should shape the smallest revision that:
+Lane 1 problem shaping should define the smallest revision that:
 
 1. generates a deterministic human-readable corpus entrypoint;
 2. makes every artifact reachable from that entrypoint without knowing an
@@ -112,7 +112,8 @@ They do not select a production stack or authorize launch.
 ## Decision
 
 Keep the current code as an evaluated baseline, mark the first experiment as
-needing revision, and return next work to Lane 1. Lane 2 should not extend the
-implementation until Lane 1 bounds the repair; Lane 3 should reevaluate the
+needing revision, and return next work to Lane 1. Implementation should not
+extend the slice until problem shaping bounds the repair; Lane 1 validation
+should reevaluate the
 revised traversal rather than treating mechanical test success as product
 success.

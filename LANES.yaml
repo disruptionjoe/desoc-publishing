@@ -1,106 +1,79 @@
 lane_contract_version: "1.0"
-manifest_revision: 1
+manifest_revision: 2
 owner:
   owner_id: desoc-publishing
-  display_name: desoc-publishing
+  display_name: DeSoc Publishing
   scope_type: repository
   charter_ref: CONSTITUTION.md
-  governance_refs:
-    - AGENTS.md
-    - GOVERNANCE.md
-  authoritative_state_refs:
-    - STATUS.md
-    - ROADMAP.md
-    - LANE-STATE.yaml
+  governance_refs: [AGENTS.md, GOVERNANCE.md]
+  authoritative_state_refs: &state_refs [STATUS.md, ROADMAP.md, LANE-STATE.yaml]
 lanes:
   - id: "1"
     label: Lane 1
     ordinal: 1
     kind: progress
-    title: Product opportunity and shaping
+    title: Evidence-led product evolution
     north_star: true
-    purpose: Turn producer and consumer needs, feedback, research, failures, and source observations into evidence-supported product hypotheses and ready slices.
+    purpose: Shape, implement, evaluate, and evolve a useful producer-to-consumer publishing product from actual evidence.
     purpose_type: north_star
+    relation_to_lane_1: primary_operational_expression
+    environment: DeSoc product hypotheses, local implementation, evaluations, and governed source observations.
+    beneficiaries: &beneficiaries [Joe, governed producers, governed consumers]
+    admission: &admission {posture: governed, authority_ref: CONSTITUTION.md}
     execution_posture: automation_eligible
-    authoritative_work_refs:
-      - RESEARCH.md
-      - docs/product
-      - docs/plans/active
+    health_profile: run_observed
+    directed_flow: null
+    authoritative_work_refs: *state_refs
+    durable_outputs: &progress_outputs [Evidence-supported product hypotheses, ready slices, validated local behavior, product dispositions]
+    eligible_outputs: *progress_outputs
     forbidden_outputs: &forbidden
       - another repository's canon or authoritative state
       - public deployment or live participation without Joe's authorization
       - new scheduler, trigger, workflow, or cadence
-    control:
+    control: &control
       state: active
       in_flight_policy: continue_current
-      control_revision: 1
-      changed_at: "2026-07-23T00:00:00-05:00"
-      changed_by: Joe direct chat, 2026-07-23
-      authority_ref: founding authorization
-  - id: "2"
-    label: Lane 2
-    ordinal: 2
-    kind: progress
-    title: Delivery and integration
-    north_star: false
-    purpose: Implement the smallest ready, reversible product slice and return exact mechanical and behavioral evidence.
-    purpose_type: supporting_progress
-    execution_posture: automation_eligible
-    authoritative_work_refs:
-      - docs/product
-      - docs/plans/active
-      - docs/evaluations
-    forbidden_outputs: *forbidden
-    control:
-      state: active
-      in_flight_policy: continue_current
-      control_revision: 1
-      changed_at: "2026-07-23T00:00:00-05:00"
-      changed_by: Joe direct chat, 2026-07-23
-      authority_ref: founding authorization
-  - id: "3"
-    label: Lane 3
-    ordinal: 3
-    kind: progress
-    title: Product evaluation and evolution
-    north_star: false
-    purpose: Explore actual behavior, compare it with the intended producer and consumer outcome, and keep, revise, revert, or return work to shaping.
-    purpose_type: supporting_progress
-    execution_posture: automation_eligible
-    authoritative_work_refs:
-      - docs/evaluations
-      - STATUS.md
-    forbidden_outputs: *forbidden
-    control:
-      state: active
-      in_flight_policy: continue_current
-      control_revision: 1
-      changed_at: "2026-07-23T00:00:00-05:00"
-      changed_by: Joe direct chat, 2026-07-23
-      authority_ref: founding authorization
+      control_revision: 2
+      scheduling_preference: normal
+      changed_at: "2026-07-25T00:00:00-05:00"
+      changed_by: Joe direct chat, 2026-07-25
+      authority_ref: WI-125 one-swing operating-architecture migration
+      reason: Stage-like shaping, implementation, and evaluation Lanes consolidated into one product lifecycle.
+    provenance: &provenance
+      revision: 2
+      approved_at: "2026-07-25T00:00:00-05:00"
+      approved_by: Joe direct chat, 2026-07-25
   - id: A
     label: Lane A
     letter: A
     kind: stewardship
     title: Product and repository stewardship
     north_star: false
-    purpose: Keep the product and its agent-development system coherent through audit, recovery, architecture, documentation, security, process learning, and escalation.
+    purpose: Keep product work, repository integrity, security, process learning, and escalation coherent.
     purpose_type: integrated_stewardship
+    relation_to_lane_1: stewardship_of_owner
+    environment: DeSoc Publishing and its governed interfaces.
+    beneficiaries: *beneficiaries
+    admission: *admission
     execution_posture: automation_eligible
-    authoritative_work_refs:
-      - AGENTS.md
-      - GOVERNANCE.md
-      - STATUS.md
-      - LANE-STATE.yaml
+    health_profile: run_observed
+    directed_flow: null
+    authoritative_work_refs: *state_refs
+    durable_outputs: &steward_outputs [Integrity records, corrections, recovery evidence, process adaptations, escalations]
+    eligible_outputs: *steward_outputs
     forbidden_outputs: *forbidden
-    control:
-      state: active
-      in_flight_policy: continue_current
-      control_revision: 1
-      changed_at: "2026-07-23T00:00:00-05:00"
-      changed_by: Joe direct chat, 2026-07-23
-      authority_ref: founding authorization
+    control: *control
+    provenance: *provenance
+    stewardship_obligations: [coordination, control, audit, intelligence_adaptation, policy_identity, escalation]
 special_rules:
   - Open exploration is Lane-less Discovery until evidence is specific enough for Lane 1.
+  - Product shaping, implementation, and human-use evaluation are phases inside Lane 1.
   - A passing implementation check is candidate evidence, not proof of product improvement.
-
+extensions:
+  operating_architecture:
+    contract_version: "1.0"
+    operating_contract_refs: [docs/product/OPERATING-MODEL.md]
+    work_state_refs: [STATUS.md, ROADMAP.md, LANE-STATE.yaml]
+    channel_contract_refs: []
+    lane_a_portfolio_refs: [LANE-STATE.yaml]
+    return_contract_refs: [docs/product/OPERATING-MODEL.md]

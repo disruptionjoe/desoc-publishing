@@ -106,7 +106,7 @@ The experiment succeeds only when automated checks show all of the following:
 
 ## Failure and reversal
 
-Stop or return the slice to Lane 1 if any of these occur:
+Stop or return the slice to Lane 1 problem shaping if any of these occur:
 
 - generation requires hand-editing an index;
 - the data model silently treats a display label as verified identity;
@@ -152,13 +152,13 @@ python3 scripts/build_local_experiment.py --fixtures fixtures --output _local/ex
 git diff --check
 ```
 
-Lane 2 owns implementation. Lane 3 must evaluate actual generated behavior
+Lane 1 owns implementation and must then validate actual generated behavior
 against the success and failure conditions above before any production-stack
 or launch recommendation.
 
 ## First evaluation outcome
 
-The 2026-07-24 Lane 3 evaluation found the generator mechanically sound but
+The 2026-07-24 product validation found the generator mechanically sound but
 the product outcome incomplete. The generated output has no human-readable
 corpus entrypoint, and the version view does not link to its predecessor or
 derive which stable claims and relationships changed. A person therefore
@@ -166,7 +166,7 @@ needs hidden path knowledge to enter the corpus and source-level comparison to
 answer the experiment's central "what changed?" question.
 
 The implementation remains as a reversible baseline, but the experiment
-returns to Lane 1 for a bounded revision before more implementation. The full
+returns to Lane 1 problem shaping for a bounded revision before more implementation. The full
 evidence and earned reshape requirements are recorded in
 `../evaluations/phase-0-first-local-experiment-evaluation.md`.
 

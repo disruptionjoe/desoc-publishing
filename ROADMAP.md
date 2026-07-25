@@ -1,5 +1,9 @@
 # Roadmap
 
+The roadmap phases describe product maturity. Within current operation, each
+work object progresses through Lane 1 problem shaping, solution design,
+implementation, human-use validation, and disposition.
+
 ## Phase 0 — product definition and local proving
 
 - Research producer and consumer needs, archive adoption, peer-review failure,
@@ -37,4 +41,3 @@ Evaluate content-addressed or decentralized persistence such as IPFS or
 Filecoin when the working product can state why it needs it. A future
 open-source frontend may be maintained by Church of AI, but no such operating
 relationship is required now.
-

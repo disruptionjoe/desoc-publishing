@@ -1,6 +1,6 @@
 # Phase 0 Revision: Corpus Entry and Version Comparison
 
-Status: ready for Lane 2 local delivery
+Status: ready for Lane 1 implementation
 
 Shaped: 2026-07-25
 
@@ -71,7 +71,7 @@ corpus index.
 
 ## Delivery boundary
 
-Lane 2 may change only the dependency-free generator, its focused tests, and
+Lane 1 implementation may change only the dependency-free generator, its focused tests, and
 the existing synthetic fixtures when needed to exercise the contract. Generated
 output stays ignored under `_local/experiment/`. Preserve byte-identical
 generation, source preservation, symlink safety, exact manifest validation,
@@ -84,7 +84,7 @@ or external services.
 
 ## Behavioral acceptance
 
-The Lane 2 change is ready for Lane 3 evaluation only when automated checks
+The implementation is ready for Lane 1 validation only when automated checks
 prove all of the following:
 
 1. Root `index.html` is generated deterministically and links to both current
@@ -102,7 +102,7 @@ prove all of the following:
 6. JSON still provides equivalent source pointers, lineage, views, and
    declared relationships; the build remains byte-identical and offline.
 
-Lane 3 should traverse from `index.html`, answer what changed using generated
+Lane 1 validation should traverse from `index.html`, answer what changed using generated
 output alone, and reevaluate every original observable success condition. It
 must record any mismatch between the specified comparison and actual rendered
 behavior rather than treating passing mechanics as product success.

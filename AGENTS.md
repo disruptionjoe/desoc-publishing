@@ -24,7 +24,8 @@ For every material change:
 
 1. Inspect the current product, evidence, and relevant files.
 2. State a small plan with goal, context, constraints, and done-when checks.
-3. Advance one coherent slice through the appropriate Lane.
+3. Advance one coherent slice through the appropriate Lane 1 phase, or Lane A
+   when the work is stewardship.
 4. Verify with repository-native commands and inspect actual behavior.
 5. Record the result, remaining risk, and the next earned state.
 6. Update `STATUS.md` or `LANE-STATE.yaml` when owner truth changed.
@@ -61,3 +62,10 @@ git diff --check
 When Phase 0 selects a stack, add its exact install, test, lint, build,
 migration, accessibility, and end-to-end commands here before implementation.
 
+## Operating architecture
+
+Lane 1 carries the product object across problem shaping, solution design,
+implementation, human-use validation, and disposition. Research, build, and
+evaluation are treatments inside that lifecycle. Historical Lane 2 and Lane 3
+receipts retain their original meaning; current work uses the mapped phase in
+Lane 1.

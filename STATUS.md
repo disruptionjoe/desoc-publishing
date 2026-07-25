@@ -41,7 +41,7 @@ The reversible first local experiment in
    runs; and
 5. passes repository validation and six offline unit tests.
 
-The first Lane 3 evaluation nevertheless found a product-level failure. The
+The first product-validation evaluation nevertheless found a product-level failure. The
 generated tree has no human-readable corpus entrypoint, so a person must know
 an artifact directory and filename before entering the product. Its version
 view names a predecessor but does not link to it or derive which stable claims,
@@ -50,10 +50,15 @@ does not yet establish a usable producer-to-consumer loop.
 
 ## Immediate objective
 
-The Lane 1 revision is now bounded in
+The problem-shaping revision is now bounded in
 `docs/product/phase-0-corpus-entry-and-version-comparison-revision.md`: add a
 deterministic corpus entrypoint and derived immediate-predecessor comparison
-without changing the portable source contract. Lane 2 may implement that
-ready, reversible slice; Lane 3 must then reevaluate the generated traversal.
+without changing the portable source contract. Lane 1 may now implement that
+ready, reversible slice and then reevaluate the generated traversal in its
+validation phase.
+
+The former shaping, delivery, and evaluation Lanes were consolidated on
+2026-07-25 into phases of the same Lane 1 product lifecycle. Historical
+receipts retain their original IDs.
 Phase 0 remains active. The current implementation is an evaluated baseline,
 not a production-stack choice or public launch.

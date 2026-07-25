@@ -1,177 +1,58 @@
 schema_version: "2.0"
 owner_id: desoc-publishing
-updated_at: "2026-07-25T07:09:27-05:00"
-run_ref: RUN-20260725-070927-desoc-progress
-bottom_line: "Corpus entry and comparison are now delivery-ready; implement and reevaluate the human traversal."
-decision_default: "Implement the bounded corpus-entry and version-comparison revision in Lane 2."
+updated_at: "2026-07-25T00:00:00-05:00"
+run_ref: WI-125-operating-architecture-migration
+bottom_line: "The bounded corpus-entry and comparison revision is ready for Lane 1 implementation, followed by human-traversal validation."
+decision_default: "Implement the revision, validate the changed traversal, then keep, revise, revert, or reshape."
 needs_joe: false
 lanes:
   - lane_id: "1"
-    work_status: moving
-    last_movement: "Bound the corpus entry and immediate-predecessor comparison revision."
-    movement_ref: "docs/product/phase-0-corpus-entry-and-version-comparison-revision.md"
-    steering_attention: none
-    steering_prompt: "none"
-    steering_ref: "CONSTITUTION.md; STATUS.md"
-    light: yellow
-    reason_code: corpus_comparison_contract_ready
-    evidence_ref: "docs/product/phase-0-corpus-entry-and-version-comparison-revision.md"
-    summary: "A deterministic corpus entry and derived comparison contract now bounds the next local slice."
-    evaluated_at: "2026-07-25T07:09:27-05:00"
-    run_ref: RUN-20260725-070927-desoc-progress
-    objective: "Turn consumer evidence into ready, reversible corpus-navigation and comparison slices."
-    progress_delta: "Negative traversal evidence became an executable entrypoint and comparison acceptance contract."
-    trend_24h: up
-    confidence: high
-    recommendation: "Implement the bounded local revision."
-    findings:
-      - "Root index traversal and predecessor links are now explicitly bounded."
-      - "Stable-claim, support, and disagreement comparison semantics are ready for tests."
-    options:
-      - id: A
-        label: "Implement revision"
-        recommended: true
-        description: "Deliver the specified local entrypoint and derived comparison behavior."
-      - id: B
-        label: "Reevaluate baseline"
-        recommended: false
-        description: "Lower because the changed traversal has not been implemented."
-      - id: C
-        label: "Select production stack"
-        recommended: false
-        description: "The bounded local repair still does not justify a production commitment."
-      - id: D
-        label: "Defer"
-        recommended: false
-        description: "No authority gate prevents the next local delivery slice."
-    decision_default: "Implement the bounded corpus-entry and version-comparison revision."
-    needs_joe: false
-  - lane_id: "2"
     work_status: ready
-    last_movement: "Received a bounded corpus-entry and comparison delivery contract."
-    movement_ref: "docs/product/phase-0-corpus-entry-and-version-comparison-revision.md"
+    last_movement: "Consolidated shaping, implementation, and evaluation into one evidence-led product lifecycle."
+    movement_ref: "docs/product/OPERATING-MODEL.md"
     steering_attention: none
-    steering_prompt: "none"
-    steering_ref: "CONSTITUTION.md; STATUS.md"
+    steering_prompt: "Implement and test the bounded corpus-entry and comparison revision."
+    steering_ref: "docs/product/phase-0-corpus-entry-and-version-comparison-revision.md"
     light: green
-    reason_code: corpus_comparison_delivery_ready
-    evidence_ref: "docs/product/phase-0-corpus-entry-and-version-comparison-revision.md; src/local_experiment.py"
-    summary: "The safe deterministic baseline now has a bounded consumer-traversal revision to implement."
-    evaluated_at: "2026-07-25T07:09:27-05:00"
-    run_ref: RUN-20260725-070927-desoc-progress
-    objective: "Implement the smallest ready, reversible corpus-entry and version-comparison slice."
-    progress_delta: "Lane 1 removed the entrypoint and comparison-definition gate on local delivery."
-    scope_position: "First offline vertical slice implemented; production stack remains unselected."
+    reason_code: corpus_comparison_implementation_ready
+    evidence_ref: "docs/product/phase-0-corpus-entry-and-version-comparison-revision.md; docs/evaluations/phase-0-first-local-experiment-evaluation.md"
+    summary: "Current work is in implementation; human-use validation remains the required next phase."
+    evaluated_at: "2026-07-25T00:00:00-05:00"
+    run_ref: WI-125-operating-architecture-migration
+    objective: "Evolve the publishing product through shaping, implementation, human-use validation, and evidence-backed disposition."
+    progress_delta: "The same product object now progresses across phases without inter-Lane handoff."
+    scope_position: "Offline vertical slice only; production stack and launch remain unselected."
     trend_24h: up
     confidence: high
-    recommendation: "Implement and test the bounded revision."
+    recommendation: "Implement the bounded revision and then rerun the stated human traversal."
     findings:
-      - "The delivery contract preserves generation, source, and input-safety invariants."
-      - "No production stack or new artifact schema is needed for the revision."
-    options:
-      - id: A
-        label: "Implement revision"
-        recommended: true
-        description: "Deliver and test the specified local traversal and comparison behavior."
-      - id: B
-        label: "Select production stack"
-        recommended: false
-        description: "Lower because the local experiment still has product evidence to earn."
-      - id: C
-        label: "Reevaluate unchanged"
-        recommended: false
-        description: "Lower because the revision must be implemented before reevaluation."
-      - id: D
-        label: "Defer"
-        recommended: false
-        description: "The local delivery slice is ready without an authority gate."
-    decision_default: "Implement and test the bounded corpus-entry and comparison revision."
-    needs_joe: false
-  - lane_id: "3"
-    work_status: thin
-    last_movement: "Completed the first product evaluation with a negative consumer-traversal result."
-    movement_ref: "docs/evaluations/phase-0-first-local-experiment-evaluation.md"
-    steering_attention: none
-    steering_prompt: "none"
-    steering_ref: "docs/product/phase-0-first-local-experiment.md"
-    light: yellow
-    reason_code: evaluation_negative_endpoint
-    evidence_ref: "docs/evaluations/phase-0-first-local-experiment-evaluation.md"
-    summary: "The negative baseline awaits reevaluation after the ready traversal and comparison revision."
-    evaluated_at: "2026-07-24T22:34:26-05:00"
-    run_ref: RUN-20260724-221205-desoc-progress
-    objective: "Preserve the negative evidence and reevaluate after the bounded revision."
-    progress_delta: "Evaluated every success condition and found the central human traversal incomplete."
-    trend_24h: up
-    confidence: high
-    recommendation: "Reevaluate after Lane 2 delivers the revision."
-    findings:
-      - "The baseline lacks entry and comparison behavior; the next evaluation must start at index.html."
-      - "Lane 1 now defines the required derived comparison and traversal checks."
-    options:
-      - id: A
-        label: "Reevaluate delivered revision"
-        recommended: true
-        description: "Test the revised traversal only after Lane 2 delivery validates it."
-      - id: B
-        label: "Reevaluate baseline"
-        recommended: false
-        description: "Lower because the known negative result would remain unchanged."
-      - id: C
-        label: "Prepare launch"
-        recommended: false
-        description: "Launch remains closed and is contradicted by the product result."
-      - id: D
-        label: "Defer"
-        recommended: false
-        description: "Lane 2 delivery must happen before a new product evaluation."
-    decision_default: "Reevaluate the corpus traversal after Lane 2 implements the revision."
+      - "The entrypoint and predecessor-comparison contract is ready."
+      - "The previous traversal failure remains the validation target."
+    decision_default: "Implement, validate, and disposition inside Lane 1."
     needs_joe: false
   - lane_id: A
     work_status: thin
-    last_movement: "Founding governance, validation, and documentation map established."
-    movement_ref: "AGENTS.md; GOVERNANCE.md; scripts/validate_repository.py"
+    last_movement: "Operating architecture and current state were reconciled."
+    movement_ref: "LANES.yaml; docs/product/OPERATING-MODEL.md"
     steering_attention: none
     steering_prompt: "none"
     steering_ref: "AGENTS.md; GOVERNANCE.md"
     light: green
-    reason_code: founding_stewardship_ready
-    evidence_ref: "AGENTS.md; GOVERNANCE.md; scripts/validate_repository.py"
-    summary: "Governance and repository validation remain usable; no stewardship intervention is needed."
-    evaluated_at: "2026-07-24T18:19:20-05:00"
-    run_ref: RUN-20260724-171230-desoc-progress
-    objective: "Keep product work and agent process coherent without substituting process for the product."
-    progress_delta: "No stewardship repair was needed; the implementation stayed inside founding gates."
-    trend_24h: flat
+    reason_code: operating_architecture_reconciled
+    evidence_ref: "LANES.yaml; docs/product/OPERATING-MODEL.md"
+    summary: "Governance, product state, and the consolidated lifecycle are coherent."
+    evaluated_at: "2026-07-25T00:00:00-05:00"
+    run_ref: WI-125-operating-architecture-migration
+    objective: "Keep product work and agent process coherent without substituting process for product value."
+    progress_delta: "Removed stage-like Lane handoffs while preserving all gates and evidence."
+    trend_24h: up
     confidence: high
     recommendation: "Continue normal stewardship watch."
     findings:
-      - "Repository validation passes with the new local experiment."
-      - "No launch, participation, identity, payment, or external-action boundary was crossed."
-    options:
-      - id: A
-        label: "Continue normal watch"
-        recommended: true
-        description: "Preserve current governance while product evaluation proceeds."
-      - id: B
-        label: "Review process"
-        recommended: false
-        description: "No observed process failure currently warrants a review."
-      - id: C
-        label: "Expand governance"
-        recommended: false
-        description: "The local experiment does not require new governance."
-      - id: D
-        label: "Defer"
-        recommended: false
-        description: "Normal watch already minimizes attention."
+      - "Historical receipts retain their original Lane meanings."
+      - "Current work now uses Lane 1 phases."
     decision_default: "Continue normal stewardship watch."
     needs_joe: false
     drift_verdict: clean
-    action_counts:
-      mail: 0
-      reconciled: 0
-      integrity_repairs: 0
-      seeds_routed: 0
-      escalations: 0
+    action_counts: {mail: 0, reconciled: 1, integrity_repairs: 1, seeds_routed: 0, escalations: 0}
     attention_pointer: "nothing needs you"

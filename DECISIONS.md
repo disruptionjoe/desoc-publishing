@@ -55,7 +55,9 @@ the success, failure, export, determinism, and safety conditions in
 `docs/product/phase-0-first-local-experiment.md`; negative evidence is retained.
 
 The first Lane 3 evaluation on 2026-07-24 retained the implementation as a
-mechanical baseline but returned the product to Lane 1 shaping. The generated
+mechanical baseline but returned the product to Lane 1 shaping. Those historical
+IDs are preserved; current operation maps shaping, implementation, and
+evaluation to phases of Lane 1. The generated
 tree has no human-readable corpus entrypoint, and its version view neither
 links predecessors nor derives claim-level changes. The evidence and bounded
 revision requirements are recorded in
