@@ -169,3 +169,8 @@ The implementation remains as a reversible baseline, but the experiment
 returns to Lane 1 for a bounded revision before more implementation. The full
 evidence and earned reshape requirements are recorded in
 `../evaluations/phase-0-first-local-experiment-evaluation.md`.
+
+The resulting delivery-ready contract is
+[`phase-0-corpus-entry-and-version-comparison-revision.md`](phase-0-corpus-entry-and-version-comparison-revision.md).
+It keeps the original portable source boundary while specifying the first
+discoverable corpus traversal and derived immediate-predecessor comparison.

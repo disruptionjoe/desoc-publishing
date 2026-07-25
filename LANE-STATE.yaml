@@ -1,91 +1,91 @@
 schema_version: "2.0"
 owner_id: desoc-publishing
-updated_at: "2026-07-24T22:34:26-05:00"
-run_ref: RUN-20260724-221205-desoc-progress
-bottom_line: "The slice is mechanically sound but fails human entry and change legibility; reshape it before implementation."
-decision_default: "Return to Lane 1 for a bounded corpus-entry and version-comparison revision."
+updated_at: "2026-07-25T07:09:27-05:00"
+run_ref: RUN-20260725-070927-desoc-progress
+bottom_line: "Corpus entry and comparison are now delivery-ready; implement and reevaluate the human traversal."
+decision_default: "Implement the bounded corpus-entry and version-comparison revision in Lane 2."
 needs_joe: false
 lanes:
   - lane_id: "1"
     work_status: moving
-    last_movement: "Received negative product evidence that reopens the first experiment's shape."
-    movement_ref: "docs/evaluations/phase-0-first-local-experiment-evaluation.md; docs/product/phase-0-first-local-experiment.md"
+    last_movement: "Bound the corpus entry and immediate-predecessor comparison revision."
+    movement_ref: "docs/product/phase-0-corpus-entry-and-version-comparison-revision.md"
     steering_attention: none
     steering_prompt: "none"
     steering_ref: "CONSTITUTION.md; STATUS.md"
     light: yellow
-    reason_code: evaluation_reopens_product_shape
-    evidence_ref: "docs/evaluations/phase-0-first-local-experiment-evaluation.md"
-    summary: "Evaluation earned a bounded reshape for discoverable corpus entry and explicit version changes."
-    evaluated_at: "2026-07-24T22:34:26-05:00"
-    run_ref: RUN-20260724-221205-desoc-progress
-    objective: "Shape the smallest revision that makes corpus entry and version changes self-explaining."
-    progress_delta: "Negative product evidence replaced the assumption that mechanically visible files form a usable consumer loop."
+    reason_code: corpus_comparison_contract_ready
+    evidence_ref: "docs/product/phase-0-corpus-entry-and-version-comparison-revision.md"
+    summary: "A deterministic corpus entry and derived comparison contract now bounds the next local slice."
+    evaluated_at: "2026-07-25T07:09:27-05:00"
+    run_ref: RUN-20260725-070927-desoc-progress
+    objective: "Turn consumer evidence into ready, reversible corpus-navigation and comparison slices."
+    progress_delta: "Negative traversal evidence became an executable entrypoint and comparison acceptance contract."
     trend_24h: up
     confidence: high
-    recommendation: "Shape corpus entry and derived version comparison."
+    recommendation: "Implement the bounded local revision."
     findings:
-      - "A person cannot enter the generated corpus without knowing an artifact path."
-      - "The version view exposes lineage but not navigable or derived change evidence."
+      - "Root index traversal and predecessor links are now explicitly bounded."
+      - "Stable-claim, support, and disagreement comparison semantics are ready for tests."
     options:
       - id: A
-        label: "Reshape entry and change"
+        label: "Implement revision"
         recommended: true
-        description: "Bound the smallest corpus entrypoint and stable-claim comparison revision."
+        description: "Deliver the specified local entrypoint and derived comparison behavior."
       - id: B
-        label: "Implement immediately"
+        label: "Reevaluate baseline"
         recommended: false
-        description: "Lower because Lane 1 has not yet bounded the repair contract."
+        description: "Lower because the changed traversal has not been implemented."
       - id: C
         label: "Select production stack"
         recommended: false
-        description: "The current usability failure does not justify a production commitment."
+        description: "The bounded local repair still does not justify a production commitment."
       - id: D
         label: "Defer"
         recommended: false
-        description: "No dependency prevents local reshaping."
-    decision_default: "Shape the bounded corpus-entry and version-comparison revision."
+        description: "No authority gate prevents the next local delivery slice."
+    decision_default: "Implement the bounded corpus-entry and version-comparison revision."
     needs_joe: false
   - lane_id: "2"
-    work_status: thin
-    last_movement: "Held the verified implementation as a baseline after negative product evaluation."
-    movement_ref: "docs/evaluations/phase-0-first-local-experiment-evaluation.md"
+    work_status: ready
+    last_movement: "Received a bounded corpus-entry and comparison delivery contract."
+    movement_ref: "docs/product/phase-0-corpus-entry-and-version-comparison-revision.md"
     steering_attention: none
     steering_prompt: "none"
     steering_ref: "CONSTITUTION.md; STATUS.md"
     light: green
-    reason_code: implementation_held_for_reshape
-    evidence_ref: "docs/evaluations/phase-0-first-local-experiment-evaluation.md; src/local_experiment.py"
-    summary: "The implementation remains safe and deterministic but should not extend before reshaping."
-    evaluated_at: "2026-07-24T22:34:26-05:00"
-    run_ref: RUN-20260724-221205-desoc-progress
-    objective: "Preserve the mechanical baseline until Lane 1 bounds the earned repair."
-    progress_delta: "Evaluation distinguished reusable implementation from the failed consumer traversal."
+    reason_code: corpus_comparison_delivery_ready
+    evidence_ref: "docs/product/phase-0-corpus-entry-and-version-comparison-revision.md; src/local_experiment.py"
+    summary: "The safe deterministic baseline now has a bounded consumer-traversal revision to implement."
+    evaluated_at: "2026-07-25T07:09:27-05:00"
+    run_ref: RUN-20260725-070927-desoc-progress
+    objective: "Implement the smallest ready, reversible corpus-entry and version-comparison slice."
+    progress_delta: "Lane 1 removed the entrypoint and comparison-definition gate on local delivery."
     scope_position: "First offline vertical slice implemented; production stack remains unselected."
     trend_24h: up
     confidence: high
-    recommendation: "Hold implementation stable for Lane 1 reshaping."
+    recommendation: "Implement and test the bounded revision."
     findings:
-      - "Generation, source preservation, relationship parity, and input safety still pass."
-      - "No implementation defect requires deletion or production-stack selection."
+      - "The delivery contract preserves generation, source, and input-safety invariants."
+      - "No production stack or new artifact schema is needed for the revision."
     options:
       - id: A
-        label: "Wait for revised shape"
+        label: "Implement revision"
         recommended: true
-        description: "Preserve the baseline until Lane 1 specifies the smallest repair."
+        description: "Deliver and test the specified local traversal and comparison behavior."
       - id: B
-        label: "Patch navigation now"
-        recommended: false
-        description: "Lower because the comparison behavior still needs explicit shaping."
-      - id: C
         label: "Select production stack"
         recommended: false
-        description: "Negative evaluation strengthens the case against a premature commitment."
+        description: "Lower because the local experiment still has product evidence to earn."
+      - id: C
+        label: "Reevaluate unchanged"
+        recommended: false
+        description: "Lower because the revision must be implemented before reevaluation."
       - id: D
         label: "Defer"
         recommended: false
-        description: "The baseline is preserved without active delivery work."
-    decision_default: "Hold the verified implementation pending Lane 1."
+        description: "The local delivery slice is ready without an authority gate."
+    decision_default: "Implement and test the bounded corpus-entry and comparison revision."
     needs_joe: false
   - lane_id: "3"
     work_status: thin
@@ -97,26 +97,26 @@ lanes:
     light: yellow
     reason_code: evaluation_negative_endpoint
     evidence_ref: "docs/evaluations/phase-0-first-local-experiment-evaluation.md"
-    summary: "The slice passes mechanics but fails discoverable human entry and explicit change understanding."
+    summary: "The negative baseline awaits reevaluation after the ready traversal and comparison revision."
     evaluated_at: "2026-07-24T22:34:26-05:00"
     run_ref: RUN-20260724-221205-desoc-progress
     objective: "Preserve the negative evidence and reevaluate after the bounded revision."
     progress_delta: "Evaluated every success condition and found the central human traversal incomplete."
     trend_24h: up
     confidence: high
-    recommendation: "Return to Lane 1, then reevaluate the revision."
+    recommendation: "Reevaluate after Lane 2 delivers the revision."
     findings:
-      - "No generated HTML corpus entrypoint exists."
-      - "The version view does not link predecessors or derive claim-level changes."
+      - "The baseline lacks entry and comparison behavior; the next evaluation must start at index.html."
+      - "Lane 1 now defines the required derived comparison and traversal checks."
     options:
       - id: A
-        label: "Return to shaping"
+        label: "Reevaluate delivered revision"
         recommended: true
-        description: "Use the negative evidence to bound a corpus-entry and change-legibility revision."
+        description: "Test the revised traversal only after Lane 2 delivery validates it."
       - id: B
-        label: "Reevaluate unchanged"
+        label: "Reevaluate baseline"
         recommended: false
-        description: "Lower because the observed failure would remain unchanged."
+        description: "Lower because the known negative result would remain unchanged."
       - id: C
         label: "Prepare launch"
         recommended: false
@@ -124,8 +124,8 @@ lanes:
       - id: D
         label: "Defer"
         recommended: false
-        description: "No dependency prevents the next local shaping step."
-    decision_default: "Return to Lane 1 and reevaluate only after revision."
+        description: "Lane 2 delivery must happen before a new product evaluation."
+    decision_default: "Reevaluate the corpus traversal after Lane 2 implements the revision."
     needs_joe: false
   - lane_id: A
     work_status: thin
