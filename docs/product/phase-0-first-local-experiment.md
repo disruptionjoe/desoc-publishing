@@ -1,6 +1,6 @@
 # Phase 0 first local experiment
 
-Status: ready for local implementation
+Status: evaluated; revision required
 
 Selected: 2026-07-23
 
@@ -155,3 +155,17 @@ git diff --check
 Lane 2 owns implementation. Lane 3 must evaluate actual generated behavior
 against the success and failure conditions above before any production-stack
 or launch recommendation.
+
+## First evaluation outcome
+
+The 2026-07-24 Lane 3 evaluation found the generator mechanically sound but
+the product outcome incomplete. The generated output has no human-readable
+corpus entrypoint, and the version view does not link to its predecessor or
+derive which stable claims and relationships changed. A person therefore
+needs hidden path knowledge to enter the corpus and source-level comparison to
+answer the experiment's central "what changed?" question.
+
+The implementation remains as a reversible baseline, but the experiment
+returns to Lane 1 for a bounded revision before more implementation. The full
+evidence and earned reshape requirements are recorded in
+`../evaluations/phase-0-first-local-experiment-evaluation.md`.

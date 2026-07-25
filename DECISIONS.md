@@ -41,7 +41,7 @@ must be evaluated against its purpose.
 
 Date: 2026-07-23
 
-Status: active experiment decision
+Status: evaluated experiment; revision required
 
 The first product experiment is a dependency-free local generator over a
 portable Markdown body and JSON manifest. It must produce an artifact view, a
@@ -53,3 +53,10 @@ identity or priority proof, service launch, content-admission rule, or
 decentralized backend. The decision is reversed if implementation cannot meet
 the success, failure, export, determinism, and safety conditions in
 `docs/product/phase-0-first-local-experiment.md`; negative evidence is retained.
+
+The first Lane 3 evaluation on 2026-07-24 retained the implementation as a
+mechanical baseline but returned the product to Lane 1 shaping. The generated
+tree has no human-readable corpus entrypoint, and its version view neither
+links predecessors nor derives claim-level changes. The evidence and bounded
+revision requirements are recorded in
+`docs/evaluations/phase-0-first-local-experiment-evaluation.md`.

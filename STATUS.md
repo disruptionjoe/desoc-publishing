@@ -18,7 +18,7 @@ explicitly approved public fixtures.
 - Automation: active through the existing `cai_directed` Repository Work Cycle
 - Experimental harness: dependency-free Python and static local output selected
 - Production application stack: not selected
-- Offline experimental slice: implemented and locally verified
+- Offline experimental slice: mechanically verified; product revision required
 - Generated output: ignored under `_local/experiment/`
 - Production application: not yet implemented
 - User-facing launch: not authorized
@@ -26,7 +26,7 @@ explicitly approved public fixtures.
 - Production deployment: not authorized
 - Decentralized backend: future option, not a requirement
 
-## Verified local behavior
+## Verified local behavior and product evidence
 
 The reversible first local experiment in
 `docs/product/phase-0-first-local-experiment.md` now:
@@ -39,10 +39,19 @@ The reversible first local experiment in
    unverified identity and priority, and deterministic ordering;
 4. preserves fixture bytes and produces byte-identical output on repeated
    runs; and
-5. passes repository validation and five offline unit tests.
+5. passes repository validation and six offline unit tests.
+
+The first Lane 3 evaluation nevertheless found a product-level failure. The
+generated tree has no human-readable corpus entrypoint, so a person must know
+an artifact directory and filename before entering the product. Its version
+view names a predecessor but does not link to it or derive which stable claims,
+support relationships, or disagreements changed. Mechanical success therefore
+does not yet establish a usable producer-to-consumer loop.
 
 ## Immediate objective
 
-Evaluate the generated behavior in Lane 3 against the experiment's observable
-success and failure conditions. Phase 0 remains active. This implementation is
-an experimental harness, not a production-stack choice or public launch.
+Return to Lane 1 and shape the smallest revision that makes corpus entry and
+version changes self-explaining, as bounded by
+`docs/evaluations/phase-0-first-local-experiment-evaluation.md`. Phase 0 remains
+active. The current implementation is an evaluated baseline, not a
+production-stack choice or public launch.
