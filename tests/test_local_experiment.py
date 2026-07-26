@@ -88,6 +88,23 @@ class LocalExperimentTests(unittest.TestCase):
             self.assertIn("Missing support:", claims)
             self.assertIn("disagreement-identity", claims)
 
+    def test_corpus_entry_and_derived_predecessor_comparison_are_navigable(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            output = Path(temporary) / "output"
+            index = generate(FIXTURES, output)
+            entrypoint = (output / "index.html").read_text()
+            self.assertEqual("index.html", index["entrypoint"])
+            self.assertIn('href="synthetic-review-v1/artifact.html"', entrypoint)
+            self.assertIn('href="synthetic-review-v2/versions.html"', entrypoint)
+            artifact = (output / "synthetic-review-v2" / "artifact.html").read_text()
+            versions = (output / "synthetic-review-v2" / "versions.html").read_text()
+            self.assertIn('../synthetic-review-v1/artifact.html', artifact)
+            self.assertIn('../index.html', artifact)
+            self.assertIn("Derived immediate-predecessor comparison", versions)
+            self.assertIn("claim-trust", versions)
+            self.assertIn("citation-identity", versions)
+            self.assertIn("added disagreement-strength", versions)
+
     def test_fixture_discovery_needs_no_hand_maintained_index(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             fixtures = Path(temporary) / "fixtures"

@@ -288,6 +288,7 @@ def _navigation(artifact_id: str) -> str:
         '<a href="artifact.html">Artifact</a>'
         '<a href="claims.html">Claims and support</a>'
         '<a href="versions.html">Versions and disagreements</a>'
+        '<a href="../index.html">Corpus entry</a>'
         "</nav>"
         f"<p><code>source: fixtures/{escape(artifact_id)}/artifact.json + "
         f"artifact.md</code></p>"
@@ -301,6 +302,17 @@ def _citation_lookup(artifact: Artifact) -> dict[str, dict[str, Any]]:
     }
 
 
+def _predecessor_links(artifact: Artifact) -> str:
+    predecessor = artifact.manifest["supersedes"]
+    if predecessor is None:
+        return "<p>No predecessor is declared.</p>"
+    safe = escape(predecessor)
+    return (
+        f'<p>Supersedes: <a href="../{safe}/artifact.html">{safe} artifact</a> '
+        f'and <a href="../{safe}/versions.html">versions</a>.</p>'
+    )
+
+
 def render_artifact_view(artifact: Artifact) -> str:
     manifest = artifact.manifest
     citations = "".join(
@@ -310,7 +322,6 @@ def render_artifact_view(artifact: Artifact) -> str:
         f"<p><code>{escape(item['locator'])}</code></p></section>"
         for item in sorted(manifest["citations"], key=lambda item: item["citation_id"])
     )
-    lineage = manifest["supersedes"] or "none (first declared version)"
     content = (
         f"{_navigation(artifact.artifact_id)}"
         f"<h1>{escape(manifest['title'])}</h1>"
@@ -318,7 +329,8 @@ def render_artifact_view(artifact: Artifact) -> str:
         f"<dl><dt>Producer display</dt><dd>{escape(manifest['producer_display'])}</dd>"
         f"<dt>Declared time</dt><dd>{escape(manifest['created_at'])}</dd>"
         f"<dt>Version</dt><dd>{escape(manifest['version'])}</dd>"
-        f"<dt>Supersedes</dt><dd>{escape(lineage)}</dd></dl>"
+        "</dl>"
+        f"{_predecessor_links(artifact)}"
         f"<p>{escape(ORDERING_RULE)}</p>"
         f"<article>{render_markdown(artifact.markdown)}</article>"
         f"<h2>Citations</h2>{citations or '<p>No citations declared.</p>'}"
@@ -380,7 +392,55 @@ def render_claims_view(artifact: Artifact) -> str:
     return _page(f"{manifest['title']} — claims", content)
 
 
-def render_versions_view(artifact: Artifact) -> str:
+def _claim_map(artifact: Artifact) -> dict[str, dict[str, Any]]:
+    return {item["claim_id"]: item for item in artifact.manifest["claims"]}
+
+
+def _disagreement_map(artifact: Artifact) -> dict[str, dict[str, Any]]:
+    return {item["disagreement_id"]: item for item in artifact.manifest["disagreements"]}
+
+
+def _comparison(current: Artifact, predecessor: Artifact) -> str:
+    current_claims, prior_claims = _claim_map(current), _claim_map(predecessor)
+    added = sorted(set(current_claims) - set(prior_claims))
+    removed = sorted(set(prior_claims) - set(current_claims))
+    changed = sorted(key for key in set(current_claims) & set(prior_claims)
+                     if current_claims[key]["text"] != prior_claims[key]["text"])
+    unchanged = sorted(key for key in set(current_claims) & set(prior_claims)
+                       if current_claims[key]["text"] == prior_claims[key]["text"])
+    rows = [
+        ("Added claims", added), ("Removed claims", removed),
+        ("Text-changed claims", changed), ("Unchanged claims", unchanged),
+    ]
+    support = []
+    for claim_id in sorted(set(current_claims) & set(prior_claims)):
+        added_citations = sorted(set(current_claims[claim_id]["citation_ids"]) - set(prior_claims[claim_id]["citation_ids"]))
+        removed_citations = sorted(set(prior_claims[claim_id]["citation_ids"]) - set(current_claims[claim_id]["citation_ids"]))
+        if added_citations or removed_citations:
+            support.append(f"{claim_id}: added {', '.join(added_citations) or 'none'}; removed {', '.join(removed_citations) or 'none'}")
+    current_disagreements, prior_disagreements = _disagreement_map(current), _disagreement_map(predecessor)
+    disagreement_changes = []
+    for identifier in sorted(set(current_disagreements) | set(prior_disagreements)):
+        if identifier not in prior_disagreements:
+            disagreement_changes.append(f"added {identifier}")
+        elif identifier not in current_disagreements:
+            disagreement_changes.append(f"removed {identifier}")
+        elif any(current_disagreements[identifier][field] != prior_disagreements[identifier][field]
+                 for field in ("position", "rationale", "citation_ids")):
+            disagreement_changes.append(f"changed {identifier}")
+    def listing(values: list[str]) -> str:
+        return escape(", ".join(values) or "none")
+    return (
+        '<section class="claim"><h2>Derived immediate-predecessor comparison</h2>'
+        '<p>This comparison is generator-derived, not a producer-authored revision note. '
+        'Claim and disagreement IDs and citation sets are matched and sorted lexically.</p>'
+        + "".join(f"<h3>{label}</h3><p>{listing(values)}</p>" for label, values in rows)
+        + f"<h3>Support changes</h3><p>{listing(support)}</p>"
+        + f"<h3>Disagreement changes</h3><p>{listing(disagreement_changes)}</p></section>"
+    )
+
+
+def render_versions_view(artifact: Artifact, predecessor: Artifact | None) -> str:
     manifest = artifact.manifest
     grouped: dict[str, list[dict[str, Any]]] = {}
     for disagreement in manifest["disagreements"]:
@@ -396,13 +456,14 @@ def render_versions_view(artifact: Artifact) -> str:
             for item in sorted(grouped[claim_id], key=lambda item: item["disagreement_id"])
         )
         sections.append(f"<section><h2>Target claim {escape(claim_id)}</h2>{items}</section>")
-    lineage = manifest["supersedes"] or "none (first declared version)"
+    comparison = _comparison(artifact, predecessor) if predecessor else "<p>No predecessor is declared, so no comparison is derived.</p>"
     content = (
         f"{_navigation(artifact.artifact_id)}"
         f"<h1>{escape(manifest['title'])}: versions and disagreements</h1>"
         f'<p class="notice">{escape(SYNTHETIC_NOTICE)}</p>'
-        f"<p>Version {escape(manifest['version'])}; supersedes: {escape(lineage)}.</p>"
+        f"<p>Version {escape(manifest['version'])}.</p>{_predecessor_links(artifact)}"
         f"<p>{escape(ORDERING_RULE)}</p>"
+        f"{comparison}"
         f"{''.join(sections) or '<p>No disagreements declared.</p>'}"
     )
     return _page(f"{manifest['title']} — versions", content)
@@ -415,6 +476,7 @@ def build_index(artifacts: list[Artifact]) -> dict[str, Any]:
         "schema_version": "1.0",
         "notice": SYNTHETIC_NOTICE,
         "ordering_rule": ORDERING_RULE,
+        "entrypoint": "index.html",
         "artifacts": [
             {
                 **artifact.manifest,
@@ -438,6 +500,7 @@ def build_index(artifacts: list[Artifact]) -> dict[str, Any]:
                 },
                 "raw_markdown": artifact.markdown,
                 "views": {
+                    "corpus": "index.html",
                     "artifact": f"{artifact.artifact_id}/artifact.html",
                     "claims": f"{artifact.artifact_id}/claims.html",
                     "versions": f"{artifact.artifact_id}/versions.html",
@@ -446,6 +509,20 @@ def build_index(artifacts: list[Artifact]) -> dict[str, Any]:
             for artifact in artifacts
         ],
     }
+
+
+def render_corpus_index(artifacts: list[Artifact]) -> str:
+    entries = "".join(
+        '<section class="claim">'
+        f"<h2>{escape(item.manifest['artifact_id'])}: {escape(item.manifest['title'])}</h2>"
+        f"<p>Producer: {escape(item.manifest['producer_display'])}; declared time: {escape(item.manifest['created_at'])}; version: {escape(item.manifest['version'])}</p>"
+        f'<p><a href="{escape(item.artifact_id)}/artifact.html">Artifact</a> '
+        f'<a href="{escape(item.artifact_id)}/claims.html">Claims</a> '
+        f'<a href="{escape(item.artifact_id)}/versions.html">Versions</a></p>'
+        f"<p><code>source: fixtures/{escape(item.artifact_id)}/artifact.json + artifact.md</code></p></section>"
+        for item in artifacts
+    )
+    return _page("Synthetic corpus entry", f"<h1>Synthetic corpus</h1><p class=\"notice\">{escape(SYNTHETIC_NOTICE)}</p><p>{escape(ORDERING_RULE)}</p>{entries}")
 
 
 def generate(fixtures_root: Path, output_root: Path) -> dict[str, Any]:
@@ -466,6 +543,7 @@ def generate(fixtures_root: Path, output_root: Path) -> dict[str, Any]:
         "generated; safe to replace\n", encoding="utf-8", newline="\n"
     )
 
+    by_id = {artifact.artifact_id: artifact for artifact in artifacts}
     for artifact in artifacts:
         artifact_output = output_root / artifact.artifact_id
         artifact_output.mkdir()
@@ -476,10 +554,13 @@ def generate(fixtures_root: Path, output_root: Path) -> dict[str, Any]:
             render_claims_view(artifact), encoding="utf-8", newline="\n"
         )
         (artifact_output / "versions.html").write_text(
-            render_versions_view(artifact), encoding="utf-8", newline="\n"
+            render_versions_view(artifact, by_id.get(artifact.manifest["supersedes"])), encoding="utf-8", newline="\n"
         )
 
     index = build_index(artifacts)
+    (output_root / "index.html").write_text(
+        render_corpus_index(artifacts), encoding="utf-8", newline="\n"
+    )
     (output_root / "index.json").write_text(
         json.dumps(index, indent=2, ensure_ascii=True, sort_keys=True) + "\n",
         encoding="utf-8",
