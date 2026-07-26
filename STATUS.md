@@ -51,8 +51,10 @@ does not yet establish a usable producer-to-consumer loop.
 ## Immediate objective
 
 The problem-shaping revision is now bounded in
-`docs/product/phase-0-corpus-entry-and-version-comparison-revision.md`: add a
-deterministic corpus entrypoint and derived immediate-predecessor comparison
+`docs/product/phase-0-corpus-entry-and-version-comparison-revision.md`: added a
+deterministic corpus entrypoint and derived immediate-predecessor comparison;
+the bounded synthetic traversal passed at
+`docs/evaluations/phase-0-corpus-entry-and-version-comparison-evaluation.md`.
 without changing the portable source contract. Lane 1 may now implement that
 ready, reversible slice and then reevaluate the generated traversal in its
 validation phase.
