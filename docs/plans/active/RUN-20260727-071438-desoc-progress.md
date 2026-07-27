@@ -118,11 +118,10 @@ this run's intended product-record footprint.
   Conditional flows invoked: `rerank-next-work`, `refresh-lane-state`,
   `classify-artifact-disposition` (versioned knowledge; generated output
   remains ignored scratch).
-- Versioning: committed as `ddd219c` (`Shape independent artifact corpus
-  slice`) and pushed to `origin/main`. The required session-sync fetch failed
-  before the work and again at closeout because DNS could not resolve
-  `github.com`, despite the successful GitHub push; the local branch is
-  therefore not falsely claimed as sync-guard closed.
+- Versioning: the initial coherent change was committed as `ddd219c` (`Shape
+  independent artifact corpus slice`) and pushed to `origin/main`. A follow-up
+  closeout correction records that fact; its merge commit requires a later
+  non-force push because DNS could not resolve `github.com` during closeout.
 - External actions: no publish, deployment, post, send, live-data, or
   participant action. GitHub versioning only.
 - Joe attention: none.
