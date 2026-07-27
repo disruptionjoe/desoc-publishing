@@ -1,34 +1,34 @@
 schema_version: "2.0"
 owner_id: desoc-publishing
-updated_at: "2026-07-27T07:14:38-05:00"
-run_ref: RUN-20260727-071438-desoc-progress
-bottom_line: "The evaluated two-version baseline earns a bounded independent-artifact corpus question."
-decision_default: "Implement and validate the independent-artifact slice, then keep, revise, revert, or reshape."
+updated_at: "2026-07-27T12:09:45-05:00"
+run_ref: RUN-20260727-120945-desoc-progress
+bottom_line: "The evaluated corpus now covers one independent artifact and one two-version lineage."
+decision_default: "Keep the bounded offline baseline; shape only a distinct product gap."
 needs_joe: false
 lanes:
   - lane_id: "1"
-    work_status: ready
-    last_movement: "Accepted the corpus-entry and comparison revision as an evaluated two-version baseline; shaped the next independent-artifact question."
-    movement_ref: "docs/evaluations/phase-0-corpus-entry-and-version-comparison-evaluation.md; docs/product/phase-0-independent-artifact-corpus-question.md"
+    work_status: moving
+    last_movement: "Validated independent-artifact navigation as a bounded synthetic corpus extension."
+    movement_ref: "docs/evaluations/phase-0-independent-artifact-corpus-evaluation.md"
     steering_attention: none
-    steering_prompt: "Implement and test the bounded independent-artifact corpus slice."
-    steering_ref: "docs/product/phase-0-independent-artifact-corpus-question.md"
+    steering_prompt: "Shape the next distinct product gap without expanding into a launch or ranking decision."
+    steering_ref: "docs/evaluations/phase-0-independent-artifact-corpus-evaluation.md"
     light: green
-    reason_code: independent_artifact_corpus_implementation_ready
-    evidence_ref: "docs/evaluations/phase-0-corpus-entry-and-version-comparison-evaluation.md; docs/product/phase-0-independent-artifact-corpus-question.md"
-    summary: "The two-version traversal is evaluated; independent-artifact navigation is the next implementation and validation target."
-    evaluated_at: "2026-07-27T07:14:38-05:00"
-    run_ref: RUN-20260727-071438-desoc-progress
+    reason_code: independent_artifact_corpus_evaluated
+    evidence_ref: "docs/evaluations/phase-0-independent-artifact-corpus-evaluation.md"
+    summary: "The corpus now demonstrates bounded synthetic navigation across an independent artifact and a version lineage."
+    evaluated_at: "2026-07-27T12:09:45-05:00"
+    run_ref: RUN-20260727-120945-desoc-progress
     objective: "Evolve the publishing product through shaping, implementation, human-use validation, and evidence-backed disposition."
-    progress_delta: "Closed the revised two-version traversal and named the smallest remaining corpus-navigation gap."
+    progress_delta: "Added and evaluated an independent portable artifact without a schema, generator, or hand-maintained index change."
     scope_position: "Offline vertical slice only; production stack and launch remain unselected."
     trend_24h: up
     confidence: high
-    recommendation: "Implement the independent-artifact slice and validate the corpus traversal."
+    recommendation: "Keep the evaluated baseline; shape only a distinct bounded product gap."
     findings:
-      - "The root entrypoint and predecessor comparison passed bounded synthetic traversal."
-      - "The current corpus contains only one version lineage, so independent-artifact navigation is unproven."
-    decision_default: "Implement, validate, and disposition the next slice inside Lane 1."
+      - "The root entrypoint lists all three artifacts without a hand-maintained index."
+      - "The independent artifact is visibly unrelated to the review lineage and preserves a no-predecessor declaration."
+    decision_default: "Keep the evaluated offline baseline; do not infer launch, identity, ranking, or stack readiness."
     needs_joe: false
   - lane_id: A
     work_status: thin

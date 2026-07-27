@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "artifact_id": "synthetic-independent-brief",
+  "title": "A Synthetic Brief on Visible Disagreement",
+  "producer_display": "Researcher Epsilon",
+  "created_at": "2026-07-03T12:00:00Z",
+  "version": "1",
+  "supersedes": null,
+  "claims": [
+    {
+      "claim_id": "claim-visible-disagreement",
+      "text": "A portable artifact can preserve a stated disagreement without treating it as an admission verdict.",
+      "citation_ids": ["citation-brief"]
+    }
+  ],
+  "citations": [
+    {
+      "citation_id": "citation-brief",
+      "text": "Synthetic fixture: the artifact carries one declared claim and one separately visible contesting note.",
+      "locator": "synthetic://brief/visible-disagreement"
+    }
+  ],
+  "disagreements": [
+    {
+      "disagreement_id": "disagreement-scope",
+      "target_claim_id": "claim-visible-disagreement",
+      "position": "qualifies",
+      "rationale": "Visibility preserves a declared disagreement but does not establish its correctness or relevance.",
+      "citation_ids": ["citation-brief"]
+    }
+  ]
+}

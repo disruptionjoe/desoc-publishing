@@ -105,6 +105,34 @@ class LocalExperimentTests(unittest.TestCase):
             self.assertIn("citation-identity", versions)
             self.assertIn("added disagreement-strength", versions)
 
+    def test_independent_artifact_is_discoverable_without_false_lineage(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            output = Path(temporary) / "output"
+            index = generate(FIXTURES, output)
+            self.assertEqual(
+                [item["artifact_id"] for item in index["artifacts"]],
+                [
+                    "synthetic-independent-brief",
+                    "synthetic-review-v1",
+                    "synthetic-review-v2",
+                ],
+            )
+            independent = next(
+                item
+                for item in index["artifacts"]
+                if item["artifact_id"] == "synthetic-independent-brief"
+            )
+            self.assertIsNone(independent["supersedes"])
+            entrypoint = (output / "index.html").read_text()
+            artifact = (output / "synthetic-independent-brief" / "artifact.html").read_text()
+            versions = (output / "synthetic-independent-brief" / "versions.html").read_text()
+            self.assertIn('href="synthetic-independent-brief/artifact.html"', entrypoint)
+            self.assertIn("not a quality ranking", entrypoint)
+            self.assertIn("No predecessor is declared", artifact)
+            self.assertIn("No predecessor is declared", versions)
+            self.assertNotIn("synthetic-review-v1", artifact)
+            self.assertNotIn("synthetic-review-v2", artifact)
+
     def test_fixture_discovery_needs_no_hand_maintained_index(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             fixtures = Path(temporary) / "fixtures"
@@ -122,6 +150,7 @@ class LocalExperimentTests(unittest.TestCase):
             self.assertEqual(
                 [item["artifact_id"] for item in index["artifacts"]],
                 [
+                    "synthetic-independent-brief",
                     "synthetic-review-v1",
                     "synthetic-review-v2",
                     "synthetic-review-v3",
