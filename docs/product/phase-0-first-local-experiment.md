@@ -1,6 +1,6 @@
 # Phase 0 first local experiment
 
-Status: evaluated; revision required
+Status: evaluated baseline; successor question shaped
 
 Selected: 2026-07-23
 
@@ -156,21 +156,21 @@ Lane 1 owns implementation and must then validate actual generated behavior
 against the success and failure conditions above before any production-stack
 or launch recommendation.
 
-## First evaluation outcome
+## First evaluation and revision outcome
 
 The 2026-07-24 product validation found the generator mechanically sound but
-the product outcome incomplete. The generated output has no human-readable
-corpus entrypoint, and the version view does not link to its predecessor or
-derive which stable claims and relationships changed. A person therefore
-needs hidden path knowledge to enter the corpus and source-level comparison to
-answer the experiment's central "what changed?" question.
-
-The implementation remains as a reversible baseline, but the experiment
-returns to Lane 1 problem shaping for a bounded revision before more implementation. The full
-evidence and earned reshape requirements are recorded in
-`../evaluations/phase-0-first-local-experiment-evaluation.md`.
-
-The resulting delivery-ready contract is
+the product outcome incomplete: it had no human-readable corpus entrypoint or
+derived predecessor comparison. The resulting delivery-ready contract was
 [`phase-0-corpus-entry-and-version-comparison-revision.md`](phase-0-corpus-entry-and-version-comparison-revision.md).
-It keeps the original portable source boundary while specifying the first
-discoverable corpus traversal and derived immediate-predecessor comparison.
+
+The 2026-07-26 reevaluation accepted that revision as an evaluated baseline.
+Starting at generated `index.html`, the two synthetic versions are discoverable
+and their immediate-predecessor differences are legible without source-path
+knowledge. The full evidence is in
+`../evaluations/phase-0-corpus-entry-and-version-comparison-evaluation.md`.
+
+This remains a bounded two-version result, not evidence that consumers can
+navigate independent research artifacts or that a production stack, launch,
+identity, priority proof, or ranking model is justified. The successor product
+question is
+[`phase-0-independent-artifact-corpus-question.md`](phase-0-independent-artifact-corpus-question.md).

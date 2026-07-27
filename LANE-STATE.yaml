@@ -1,34 +1,34 @@
 schema_version: "2.0"
 owner_id: desoc-publishing
-updated_at: "2026-07-25T00:00:00-05:00"
-run_ref: WI-125-operating-architecture-migration
-bottom_line: "The bounded corpus-entry and comparison revision is ready for Lane 1 implementation, followed by human-traversal validation."
-decision_default: "Implement the revision, validate the changed traversal, then keep, revise, revert, or reshape."
+updated_at: "2026-07-27T07:14:38-05:00"
+run_ref: RUN-20260727-071438-desoc-progress
+bottom_line: "The evaluated two-version baseline earns a bounded independent-artifact corpus question."
+decision_default: "Implement and validate the independent-artifact slice, then keep, revise, revert, or reshape."
 needs_joe: false
 lanes:
   - lane_id: "1"
     work_status: ready
-    last_movement: "Consolidated shaping, implementation, and evaluation into one evidence-led product lifecycle."
-    movement_ref: "docs/product/OPERATING-MODEL.md"
+    last_movement: "Accepted the corpus-entry and comparison revision as an evaluated two-version baseline; shaped the next independent-artifact question."
+    movement_ref: "docs/evaluations/phase-0-corpus-entry-and-version-comparison-evaluation.md; docs/product/phase-0-independent-artifact-corpus-question.md"
     steering_attention: none
-    steering_prompt: "Implement and test the bounded corpus-entry and comparison revision."
-    steering_ref: "docs/product/phase-0-corpus-entry-and-version-comparison-revision.md"
+    steering_prompt: "Implement and test the bounded independent-artifact corpus slice."
+    steering_ref: "docs/product/phase-0-independent-artifact-corpus-question.md"
     light: green
-    reason_code: corpus_comparison_implementation_ready
-    evidence_ref: "docs/product/phase-0-corpus-entry-and-version-comparison-revision.md; docs/evaluations/phase-0-first-local-experiment-evaluation.md"
-    summary: "Current work is in implementation; human-use validation remains the required next phase."
-    evaluated_at: "2026-07-25T00:00:00-05:00"
-    run_ref: WI-125-operating-architecture-migration
+    reason_code: independent_artifact_corpus_implementation_ready
+    evidence_ref: "docs/evaluations/phase-0-corpus-entry-and-version-comparison-evaluation.md; docs/product/phase-0-independent-artifact-corpus-question.md"
+    summary: "The two-version traversal is evaluated; independent-artifact navigation is the next implementation and validation target."
+    evaluated_at: "2026-07-27T07:14:38-05:00"
+    run_ref: RUN-20260727-071438-desoc-progress
     objective: "Evolve the publishing product through shaping, implementation, human-use validation, and evidence-backed disposition."
-    progress_delta: "The same product object now progresses across phases without inter-Lane handoff."
+    progress_delta: "Closed the revised two-version traversal and named the smallest remaining corpus-navigation gap."
     scope_position: "Offline vertical slice only; production stack and launch remain unselected."
     trend_24h: up
     confidence: high
-    recommendation: "Implement the bounded revision and then rerun the stated human traversal."
+    recommendation: "Implement the independent-artifact slice and validate the corpus traversal."
     findings:
-      - "The entrypoint and predecessor-comparison contract is ready."
-      - "The previous traversal failure remains the validation target."
-    decision_default: "Implement, validate, and disposition inside Lane 1."
+      - "The root entrypoint and predecessor comparison passed bounded synthetic traversal."
+      - "The current corpus contains only one version lineage, so independent-artifact navigation is unproven."
+    decision_default: "Implement, validate, and disposition the next slice inside Lane 1."
     needs_joe: false
   - lane_id: A
     work_status: thin

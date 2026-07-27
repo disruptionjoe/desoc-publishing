@@ -41,7 +41,7 @@ must be evaluated against its purpose.
 
 Date: 2026-07-23
 
-Status: evaluated experiment; revision required
+Status: evaluated baseline; next bounded question shaped
 
 The first product experiment is a dependency-free local generator over a
 portable Markdown body and JSON manifest. It must produce an artifact view, a
@@ -54,11 +54,15 @@ decentralized backend. The decision is reversed if implementation cannot meet
 the success, failure, export, determinism, and safety conditions in
 `docs/product/phase-0-first-local-experiment.md`; negative evidence is retained.
 
-The first Lane 3 evaluation on 2026-07-24 retained the implementation as a
-mechanical baseline but returned the product to Lane 1 shaping. Those historical
-IDs are preserved; current operation maps shaping, implementation, and
-evaluation to phases of Lane 1. The generated
-tree has no human-readable corpus entrypoint, and its version view neither
-links predecessors nor derives claim-level changes. The evidence and bounded
-revision requirements are recorded in
-`docs/evaluations/phase-0-first-local-experiment-evaluation.md`.
+The first evaluation on 2026-07-24 retained the implementation as a mechanical
+baseline but returned the product to Lane 1 shaping. The bounded revision then
+added a corpus entrypoint, predecessor links, and derived version comparison;
+the 2026-07-26 evaluation accepted that revised local slice as an evaluated
+baseline. Those historical IDs are preserved; current operation maps shaping,
+implementation, and evaluation to phases of Lane 1.
+
+The accepted baseline demonstrates one two-version lineage only. The next
+bounded question is whether a consumer can navigate independent artifacts in
+the same synthetic corpus without treating deterministic ordering as a ranking
+or mistaking unrelated artifacts for versions. Its contract is
+`docs/product/phase-0-independent-artifact-corpus-question.md`.
