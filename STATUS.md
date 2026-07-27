@@ -1,6 +1,6 @@
 # Status
 
-Updated: 2026-07-24
+Updated: 2026-07-27
 
 ## Current phase
 
@@ -18,7 +18,7 @@ explicitly approved public fixtures.
 - Automation: active through the existing `cai_directed` Repository Work Cycle
 - Experimental harness: dependency-free Python and static local output selected
 - Production application stack: not selected
-- Offline experimental slice: mechanically verified; product revision required
+- Offline experimental slice: evaluated baseline for one two-version lineage
 - Generated output: ignored under `_local/experiment/`
 - Production application: not yet implemented
 - User-facing launch: not authorized
@@ -50,14 +50,18 @@ does not yet establish a usable producer-to-consumer loop.
 
 ## Immediate objective
 
-The problem-shaping revision is now bounded in
-`docs/product/phase-0-corpus-entry-and-version-comparison-revision.md`: added a
-deterministic corpus entrypoint and derived immediate-predecessor comparison;
-the bounded synthetic traversal passed at
+The corpus-entry and immediate-predecessor revision is an evaluated baseline:
+the generated root `index.html` reaches both artifacts and their three local
+views, while the v2 view derives its declared difference from v1. The evidence
+is recorded in
 `docs/evaluations/phase-0-corpus-entry-and-version-comparison-evaluation.md`.
-without changing the portable source contract. Lane 1 may now implement that
-ready, reversible slice and then reevaluate the generated traversal in its
-validation phase.
+
+The next ready Lane 1 question is bounded in
+`docs/product/phase-0-independent-artifact-corpus-question.md`: add one
+independent synthetic artifact and test whether the corpus entrypoint keeps
+identity, lineage, and deterministic navigation legible without a mandatory
+ranking or hidden source knowledge. It preserves the portable source contract,
+offline boundary, and absence of a production-stack decision.
 
 The former shaping, delivery, and evaluation Lanes were consolidated on
 2026-07-25 into phases of the same Lane 1 product lifecycle. Historical

@@ -1,6 +1,6 @@
 # Run Plan: Bound the Corpus Entry and Version Comparison Revision
 
-Status: active
+Status: complete
 
 Run ID: `RUN-20260725-070927-desoc-progress`
 
