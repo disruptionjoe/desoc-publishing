@@ -1,30 +1,30 @@
 schema_version: "2.0"
 owner_id: desoc-publishing
-updated_at: "2026-07-27T12:09:45-05:00"
-run_ref: RUN-20260727-120945-desoc-progress
-bottom_line: "The evaluated corpus now covers one independent artifact and one two-version lineage."
-decision_default: "Keep the bounded offline baseline; shape only a distinct product gap."
+updated_at: "2026-07-27T22:10:19-05:00"
+run_ref: RUN-20260727-221019-desoc-progress
+bottom_line: "The evaluated corpus now has an executable question for making lineage forks discoverable without canonicality."
+decision_default: "Implement only the offline declared-successor navigation slice."
 needs_joe: false
 lanes:
   - lane_id: "1"
     work_status: moving
-    last_movement: "Validated independent-artifact navigation as a bounded synthetic corpus extension."
-    movement_ref: "docs/evaluations/phase-0-independent-artifact-corpus-evaluation.md"
+    last_movement: "Shaped a bounded declared-successor navigation slice with explicit non-canonicality controls."
+    movement_ref: "docs/product/phase-0-lineage-branching-question.md"
     steering_attention: none
-    steering_prompt: "Shape the next distinct product gap without expanding into a launch or ranking decision."
-    steering_ref: "docs/evaluations/phase-0-independent-artifact-corpus-evaluation.md"
+    steering_prompt: "Implement and evaluate declared-successor navigation without ranking, canonicality, or launch claims."
+    steering_ref: "docs/product/phase-0-lineage-branching-question.md"
     light: green
-    reason_code: independent_artifact_corpus_evaluated
-    evidence_ref: "docs/evaluations/phase-0-independent-artifact-corpus-evaluation.md"
-    summary: "The corpus now demonstrates bounded synthetic navigation across an independent artifact and a version lineage."
-    evaluated_at: "2026-07-27T12:09:45-05:00"
-    run_ref: RUN-20260727-120945-desoc-progress
+    reason_code: lineage_branching_gap_shaped
+    evidence_ref: "docs/evaluations/phase-0-independent-artifact-corpus-evaluation.md; docs/product/phase-0-lineage-branching-question.md"
+    summary: "The next offline slice reveals every declared successor from its predecessor without selecting a canonical branch."
+    evaluated_at: "2026-07-27T22:10:19-05:00"
+    run_ref: RUN-20260727-221019-desoc-progress
     objective: "Evolve the publishing product through shaping, implementation, human-use validation, and evidence-backed disposition."
-    progress_delta: "Added and evaluated an independent portable artifact without a schema, generator, or hand-maintained index change."
-    scope_position: "Offline vertical slice only; production stack and launch remain unselected."
+    progress_delta: "Shaped an implementation-ready declared-successor navigation slice with a synthetic fork fixture and non-canonicality acceptance checks."
+    scope_position: "Offline vertical slice only; production stack, ranking, identity, and launch remain unselected."
     trend_24h: up
     confidence: high
-    recommendation: "Keep the evaluated baseline; shape only a distinct bounded product gap."
+    recommendation: "Implement only the declared-successor navigation slice, then evaluate traversal from the shared predecessor."
     findings:
       - "The root entrypoint lists all three artifacts without a hand-maintained index."
       - "The independent artifact is visibly unrelated to the review lineage and preserves a no-predecessor declaration."

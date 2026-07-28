@@ -61,8 +61,10 @@ generated entrypoint keeps source pointers, identity limits, lineage, and
 deterministic navigation legible across one independent artifact and the
 two-version lineage without a mandatory ranking or hidden source knowledge.
 See `docs/evaluations/phase-0-independent-artifact-corpus-evaluation.md`.
-Any successor must name a distinct product gap; it retains the portable source
-contract, offline boundary, and absence of a production-stack decision.
+The next bounded question is whether reverse lineage makes multiple declared
+successors discoverable without implying a canonical branch. Its contract is
+`docs/product/phase-0-lineage-branching-question.md`. It retains the portable
+source contract, offline boundary, and absence of a production-stack decision.
 
 The former shaping, delivery, and evaluation Lanes were consolidated on
 2026-07-25 into phases of the same Lane 1 product lifecycle. Historical
