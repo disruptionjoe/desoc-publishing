@@ -1,32 +1,32 @@
 schema_version: "2.0"
 owner_id: desoc-publishing
-updated_at: "2026-07-27T22:10:19-05:00"
-run_ref: RUN-20260727-221019-desoc-progress
-bottom_line: "The evaluated corpus now has an executable question for making lineage forks discoverable without canonicality."
-decision_default: "Implement only the offline declared-successor navigation slice."
+updated_at: "2026-07-28T02:10:13-05:00"
+run_ref: RUN-20260728-021013-desoc-progress
+bottom_line: "The evaluated corpus now reveals declared lineage forks without a canonicality inference."
+decision_default: "Evaluate bounded consumer traversal; do not add ranking, identity, network, or launch behavior."
 needs_joe: false
 lanes:
   - lane_id: "1"
     work_status: moving
-    last_movement: "Shaped a bounded declared-successor navigation slice with explicit non-canonicality controls."
-    movement_ref: "docs/product/phase-0-lineage-branching-question.md"
+    last_movement: "Implemented and evaluated declared-successor navigation with synthetic fork coverage and explicit non-canonicality controls."
+    movement_ref: "docs/evaluations/phase-0-lineage-branching-evaluation.md"
     steering_attention: none
-    steering_prompt: "Implement and evaluate declared-successor navigation without ranking, canonicality, or launch claims."
-    steering_ref: "docs/product/phase-0-lineage-branching-question.md"
+    steering_prompt: "Evaluate whether consumers can traverse declared plurality without hidden corpus knowledge or canonicality inference."
+    steering_ref: "docs/evaluations/phase-0-lineage-branching-evaluation.md"
     light: green
-    reason_code: lineage_branching_gap_shaped
-    evidence_ref: "docs/evaluations/phase-0-independent-artifact-corpus-evaluation.md; docs/product/phase-0-lineage-branching-question.md"
-    summary: "The next offline slice reveals every declared successor from its predecessor without selecting a canonical branch."
-    evaluated_at: "2026-07-27T22:10:19-05:00"
-    run_ref: RUN-20260727-221019-desoc-progress
+    reason_code: lineage_branching_navigation_evaluated
+    evidence_ref: "docs/evaluations/phase-0-lineage-branching-evaluation.md; tests/test_local_experiment.py"
+    summary: "A shared predecessor now exposes lexically ordered declared successors without choosing a canonical branch."
+    evaluated_at: "2026-07-28T02:10:13-05:00"
+    run_ref: RUN-20260728-021013-desoc-progress
     objective: "Evolve the publishing product through shaping, implementation, human-use validation, and evidence-backed disposition."
-    progress_delta: "Shaped an implementation-ready declared-successor navigation slice with a synthetic fork fixture and non-canonicality acceptance checks."
+    progress_delta: "Implemented and evaluated the declared-successor navigation slice with synthetic fork coverage, JSON parity, and explicit non-canonicality disclosure."
     scope_position: "Offline vertical slice only; production stack, ranking, identity, and launch remain unselected."
     trend_24h: up
     confidence: high
-    recommendation: "Implement only the declared-successor navigation slice, then evaluate traversal from the shared predecessor."
+    recommendation: "Evaluate a bounded traversal from the shared predecessor; keep ranking, identity, network, and launch out of scope."
     findings:
-      - "The root entrypoint lists all three artifacts without a hand-maintained index."
+      - "The root entrypoint lists all four artifacts without a hand-maintained index."
       - "The independent artifact is visibly unrelated to the review lineage and preserves a no-predecessor declaration."
     decision_default: "Keep the evaluated offline baseline; do not infer launch, identity, ranking, or stack readiness."
     needs_joe: false

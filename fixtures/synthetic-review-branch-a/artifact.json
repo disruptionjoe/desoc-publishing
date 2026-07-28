@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "artifact_id": "synthetic-review-branch-a",
+  "title": "A Synthetic Test of Open Review, Alternative Branch",
+  "producer_display": "Researcher Delta",
+  "created_at": "2026-07-03T12:00:00Z",
+  "version": "1-branch-a",
+  "supersedes": "synthetic-review-v1",
+  "claims": [
+    {
+      "claim_id": "claim-access",
+      "text": "Portable source files reduce the work required to inspect a research artifact when declared relationships remain visible.",
+      "citation_ids": [
+        "citation-benchmark"
+      ]
+    }
+  ],
+  "citations": [
+    {
+      "citation_id": "citation-benchmark",
+      "text": "Synthetic branch fixture: declared lineage stays visible without selecting a preferred continuation.",
+      "locator": "synthetic://benchmark/open-review-branch-a"
+    }
+  ],
+  "disagreements": []
+}

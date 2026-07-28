@@ -113,6 +113,7 @@ class LocalExperimentTests(unittest.TestCase):
                 [item["artifact_id"] for item in index["artifacts"]],
                 [
                     "synthetic-independent-brief",
+                    "synthetic-review-branch-a",
                     "synthetic-review-v1",
                     "synthetic-review-v2",
                 ],
@@ -133,6 +134,28 @@ class LocalExperimentTests(unittest.TestCase):
             self.assertNotIn("synthetic-review-v1", artifact)
             self.assertNotIn("synthetic-review-v2", artifact)
 
+    def test_declared_successors_are_navigable_without_canonicality(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            output = Path(temporary) / "output"
+            index = generate(FIXTURES, output)
+            by_id = {item["artifact_id"]: item for item in index["artifacts"]}
+            predecessor = by_id["synthetic-review-v1"]
+            self.assertEqual(
+                [item["artifact_id"] for item in predecessor["declared_successors"]],
+                ["synthetic-review-branch-a", "synthetic-review-v2"],
+            )
+            artifact = (output / "synthetic-review-v1" / "artifact.html").read_text()
+            versions = (output / "synthetic-review-v1" / "versions.html").read_text()
+            self.assertIn('../synthetic-review-branch-a/artifact.html', artifact)
+            self.assertIn('../synthetic-review-v2/artifact.html', artifact)
+            self.assertLess(
+                artifact.index("synthetic-review-branch-a"),
+                artifact.index("synthetic-review-v2"),
+            )
+            self.assertIn("do not identify a canonical", artifact)
+            self.assertIn("do not identify a canonical", versions)
+            self.assertIn("No declared successors.", (output / "synthetic-review-v2" / "artifact.html").read_text())
+
     def test_fixture_discovery_needs_no_hand_maintained_index(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             fixtures = Path(temporary) / "fixtures"
@@ -151,6 +174,7 @@ class LocalExperimentTests(unittest.TestCase):
                 [item["artifact_id"] for item in index["artifacts"]],
                 [
                     "synthetic-independent-brief",
+                    "synthetic-review-branch-a",
                     "synthetic-review-v1",
                     "synthetic-review-v2",
                     "synthetic-review-v3",

@@ -18,7 +18,7 @@ explicitly approved public fixtures.
 - Automation: active through the existing `cai_directed` Repository Work Cycle
 - Experimental harness: dependency-free Python and static local output selected
 - Production application stack: not selected
-- Offline experimental slice: evaluated baseline for a two-version lineage and one independent artifact
+- Offline experimental slice: evaluated baseline for an independent artifact, a two-version lineage, and one declared lineage fork
 - Generated output: ignored under `_local/experiment/`
 - Production application: not yet implemented
 - User-facing launch: not authorized
@@ -65,6 +65,14 @@ The next bounded question is whether reverse lineage makes multiple declared
 successors discoverable without implying a canonical branch. Its contract is
 `docs/product/phase-0-lineage-branching-question.md`. It retains the portable
 source contract, offline boundary, and absence of a production-stack decision.
+
+That lineage-branching slice is now evaluated. A shared predecessor visibly
+links to each lexically ordered declared successor, and the equivalent JSON
+index exposes the same paths while disclaiming canonicality, preference,
+replacement, or quality. The evidence is recorded in
+`docs/evaluations/phase-0-lineage-branching-evaluation.md`. The next earned
+question is whether a bounded consumer traversal can make that plurality
+comprehensible without hidden corpus knowledge.
 
 The former shaping, delivery, and evaluation Lanes were consolidated on
 2026-07-25 into phases of the same Lane 1 product lifecycle. Historical

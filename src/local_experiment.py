@@ -313,7 +313,32 @@ def _predecessor_links(artifact: Artifact) -> str:
     )
 
 
-def render_artifact_view(artifact: Artifact) -> str:
+def _successor_ids(artifact: Artifact, artifacts: list[Artifact]) -> list[str]:
+    return sorted(
+        candidate.artifact_id
+        for candidate in artifacts
+        if candidate.manifest["supersedes"] == artifact.artifact_id
+    )
+
+
+def _successor_links(artifact: Artifact, artifacts: list[Artifact]) -> str:
+    successors = _successor_ids(artifact, artifacts)
+    if not successors:
+        return "<p>No declared successors.</p>"
+    links = ", ".join(
+        f'<a href="../{escape(successor)}/artifact.html">{escape(successor)}</a>'
+        for successor in successors
+    )
+    plurality = "successor" if len(successors) == 1 else "successors"
+    return (
+        f"<p>Declared {plurality}: {links}.</p>"
+        "<p class=\"notice\">These links are navigation aids derived only from "
+        "declared supersedes fields. They do not identify a canonical, preferred, "
+        "correct, adopted, merged, replacement, or higher-quality branch.</p>"
+    )
+
+
+def render_artifact_view(artifact: Artifact, artifacts: list[Artifact]) -> str:
     manifest = artifact.manifest
     citations = "".join(
         '<section class="citation">'
@@ -331,6 +356,7 @@ def render_artifact_view(artifact: Artifact) -> str:
         f"<dt>Version</dt><dd>{escape(manifest['version'])}</dd>"
         "</dl>"
         f"{_predecessor_links(artifact)}"
+        f"{_successor_links(artifact, artifacts)}"
         f"<p>{escape(ORDERING_RULE)}</p>"
         f"<article>{render_markdown(artifact.markdown)}</article>"
         f"<h2>Citations</h2>{citations or '<p>No citations declared.</p>'}"
@@ -440,7 +466,9 @@ def _comparison(current: Artifact, predecessor: Artifact) -> str:
     )
 
 
-def render_versions_view(artifact: Artifact, predecessor: Artifact | None) -> str:
+def render_versions_view(
+    artifact: Artifact, predecessor: Artifact | None, artifacts: list[Artifact]
+) -> str:
     manifest = artifact.manifest
     grouped: dict[str, list[dict[str, Any]]] = {}
     for disagreement in manifest["disagreements"]:
@@ -462,6 +490,7 @@ def render_versions_view(artifact: Artifact, predecessor: Artifact | None) -> st
         f"<h1>{escape(manifest['title'])}: versions and disagreements</h1>"
         f'<p class="notice">{escape(SYNTHETIC_NOTICE)}</p>'
         f"<p>Version {escape(manifest['version'])}.</p>{_predecessor_links(artifact)}"
+        f"{_successor_links(artifact, artifacts)}"
         f"<p>{escape(ORDERING_RULE)}</p>"
         f"{comparison}"
         f"{''.join(sections) or '<p>No disagreements declared.</p>'}"
@@ -498,6 +527,16 @@ def build_index(artifacts: list[Artifact]) -> dict[str, Any]:
                     "manifest": f"fixtures/{artifact.artifact_id}/artifact.json",
                     "markdown": f"fixtures/{artifact.artifact_id}/artifact.md",
                 },
+                "declared_successors": [
+                    {
+                        "artifact_id": successor,
+                        "views": {
+                            "artifact": f"{successor}/artifact.html",
+                            "versions": f"{successor}/versions.html",
+                        },
+                    }
+                    for successor in _successor_ids(artifact, artifacts)
+                ],
                 "raw_markdown": artifact.markdown,
                 "views": {
                     "corpus": "index.html",
@@ -519,6 +558,7 @@ def render_corpus_index(artifacts: list[Artifact]) -> str:
         f'<p><a href="{escape(item.artifact_id)}/artifact.html">Artifact</a> '
         f'<a href="{escape(item.artifact_id)}/claims.html">Claims</a> '
         f'<a href="{escape(item.artifact_id)}/versions.html">Versions</a></p>'
+        f"{_successor_links(item, artifacts)}"
         f"<p><code>source: fixtures/{escape(item.artifact_id)}/artifact.json + artifact.md</code></p></section>"
         for item in artifacts
     )
@@ -548,13 +588,17 @@ def generate(fixtures_root: Path, output_root: Path) -> dict[str, Any]:
         artifact_output = output_root / artifact.artifact_id
         artifact_output.mkdir()
         (artifact_output / "artifact.html").write_text(
-            render_artifact_view(artifact), encoding="utf-8", newline="\n"
+            render_artifact_view(artifact, artifacts), encoding="utf-8", newline="\n"
         )
         (artifact_output / "claims.html").write_text(
             render_claims_view(artifact), encoding="utf-8", newline="\n"
         )
         (artifact_output / "versions.html").write_text(
-            render_versions_view(artifact, by_id.get(artifact.manifest["supersedes"])), encoding="utf-8", newline="\n"
+            render_versions_view(
+                artifact, by_id.get(artifact.manifest["supersedes"]), artifacts
+            ),
+            encoding="utf-8",
+            newline="\n",
         )
 
     index = build_index(artifacts)
