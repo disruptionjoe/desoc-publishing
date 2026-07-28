@@ -338,6 +338,33 @@ def _successor_links(artifact: Artifact, artifacts: list[Artifact]) -> str:
     )
 
 
+def _lineage_context(artifact: Artifact, artifacts: list[Artifact]) -> str:
+    """Render declared sibling context without inferring a preferred branch."""
+
+    predecessor = artifact.manifest["supersedes"]
+    if predecessor is None:
+        return ""
+    siblings = [
+        successor
+        for successor in _successor_ids(
+            next(item for item in artifacts if item.artifact_id == predecessor), artifacts
+        )
+        if successor != artifact.artifact_id
+    ]
+    if not siblings:
+        return ""
+    links = ", ".join(
+        f'<a href="../{escape(sibling)}/artifact.html">{escape(sibling)}</a>'
+        for sibling in siblings
+    )
+    return (
+        "<section class=\"notice\"><h2>Declared lineage context</h2>"
+        f"<p>This artifact and {links} each declare {escape(predecessor)} as an "
+        "immediate predecessor.</p><p>This is derived navigation context only; it "
+        "does not compare, rank, or select any continuation.</p></section>"
+    )
+
+
 def render_artifact_view(artifact: Artifact, artifacts: list[Artifact]) -> str:
     manifest = artifact.manifest
     citations = "".join(
@@ -357,6 +384,7 @@ def render_artifact_view(artifact: Artifact, artifacts: list[Artifact]) -> str:
         "</dl>"
         f"{_predecessor_links(artifact)}"
         f"{_successor_links(artifact, artifacts)}"
+        f"{_lineage_context(artifact, artifacts)}"
         f"<p>{escape(ORDERING_RULE)}</p>"
         f"<article>{render_markdown(artifact.markdown)}</article>"
         f"<h2>Citations</h2>{citations or '<p>No citations declared.</p>'}"
@@ -491,6 +519,7 @@ def render_versions_view(
         f'<p class="notice">{escape(SYNTHETIC_NOTICE)}</p>'
         f"<p>Version {escape(manifest['version'])}.</p>{_predecessor_links(artifact)}"
         f"{_successor_links(artifact, artifacts)}"
+        f"{_lineage_context(artifact, artifacts)}"
         f"<p>{escape(ORDERING_RULE)}</p>"
         f"{comparison}"
         f"{''.join(sections) or '<p>No disagreements declared.</p>'}"
@@ -501,6 +530,7 @@ def render_versions_view(
 def build_index(artifacts: list[Artifact]) -> dict[str, Any]:
     """Return the machine-readable form of every visible relationship."""
 
+    by_id = {artifact.artifact_id: artifact for artifact in artifacts}
     return {
         "schema_version": "1.0",
         "notice": SYNTHETIC_NOTICE,
@@ -537,6 +567,19 @@ def build_index(artifacts: list[Artifact]) -> dict[str, Any]:
                     }
                     for successor in _successor_ids(artifact, artifacts)
                 ],
+                "declared_lineage_context": {
+                    "predecessor": artifact.manifest["supersedes"],
+                    "sibling_continuations": [
+                        sibling
+                        for sibling in _successor_ids(
+                            by_id[artifact.manifest["supersedes"]], artifacts
+                        )
+                        if sibling != artifact.artifact_id
+                    ]
+                    if artifact.manifest["supersedes"] is not None
+                    else [],
+                    "notice": "Derived navigation context only; no continuation is compared, ranked, or selected.",
+                },
                 "raw_markdown": artifact.markdown,
                 "views": {
                     "corpus": "index.html",

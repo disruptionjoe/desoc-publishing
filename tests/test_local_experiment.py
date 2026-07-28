@@ -156,6 +156,22 @@ class LocalExperimentTests(unittest.TestCase):
             self.assertIn("do not identify a canonical", versions)
             self.assertIn("No declared successors.", (output / "synthetic-review-v2" / "artifact.html").read_text())
 
+    def test_successor_traversal_exposes_declared_siblings_without_ranking(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            output = Path(temporary) / "output"
+            index = generate(FIXTURES, output)
+            by_id = {item["artifact_id"]: item for item in index["artifacts"]}
+            branch = by_id["synthetic-review-branch-a"]
+            self.assertEqual(branch["declared_lineage_context"]["predecessor"], "synthetic-review-v1")
+            self.assertEqual(branch["declared_lineage_context"]["sibling_continuations"], ["synthetic-review-v2"])
+            self.assertIn("no continuation is compared, ranked, or selected", branch["declared_lineage_context"]["notice"])
+            artifact = (output / "synthetic-review-branch-a" / "artifact.html").read_text()
+            versions = (output / "synthetic-review-branch-a" / "versions.html").read_text()
+            for view in (artifact, versions):
+                self.assertIn("Declared lineage context", view)
+                self.assertIn('../synthetic-review-v2/artifact.html', view)
+                self.assertIn("does not compare, rank, or select", view)
+
     def test_fixture_discovery_needs_no_hand_maintained_index(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             fixtures = Path(temporary) / "fixtures"

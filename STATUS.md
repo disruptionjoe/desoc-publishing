@@ -69,10 +69,13 @@ source contract, offline boundary, and absence of a production-stack decision.
 That lineage-branching slice is now evaluated. A shared predecessor visibly
 links to each lexically ordered declared successor, and the equivalent JSON
 index exposes the same paths while disclaiming canonicality, preference,
-replacement, or quality. The evidence is recorded in
-`docs/evaluations/phase-0-lineage-branching-evaluation.md`. The next earned
-question is whether a bounded consumer traversal can make that plurality
-comprehensible without hidden corpus knowledge.
+replacement, or quality. A successor now also exposes its shared predecessor
+and declared sibling continuations in HTML and JSON without comparison or
+selection. The evidence is recorded in
+`docs/evaluations/phase-0-lineage-traversal-evaluation.md`. The next earned
+question is whether a bounded consumer walkthrough can distinguish provenance,
+support, disagreement, and lineage without interpreting navigation as
+endorsement.
 
 The former shaping, delivery, and evaluation Lanes were consolidated on
 2026-07-25 into phases of the same Lane 1 product lifecycle. Historical

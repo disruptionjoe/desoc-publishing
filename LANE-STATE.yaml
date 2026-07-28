@@ -1,30 +1,30 @@
 schema_version: "2.0"
 owner_id: desoc-publishing
-updated_at: "2026-07-28T02:10:13-05:00"
-run_ref: RUN-20260728-021013-desoc-progress
-bottom_line: "The evaluated corpus now reveals declared lineage forks without a canonicality inference."
-decision_default: "Evaluate bounded consumer traversal; do not add ranking, identity, network, or launch behavior."
+updated_at: "2026-07-28T07:10:20-05:00"
+run_ref: RUN-20260728-071020-desoc-progress
+bottom_line: "A consumer can traverse a declared fork from either successor without a canonicality inference."
+decision_default: "Evaluate a bounded end-to-end consumer walkthrough; do not add ranking, identity, network, or launch behavior."
 needs_joe: false
 lanes:
   - lane_id: "1"
     work_status: moving
-    last_movement: "Implemented and evaluated declared-successor navigation with synthetic fork coverage and explicit non-canonicality controls."
-    movement_ref: "docs/evaluations/phase-0-lineage-branching-evaluation.md"
+    last_movement: "Implemented and evaluated declared fork traversal from a successor to its shared predecessor and sibling continuation."
+    movement_ref: "docs/evaluations/phase-0-lineage-traversal-evaluation.md"
     steering_attention: none
-    steering_prompt: "Evaluate whether consumers can traverse declared plurality without hidden corpus knowledge or canonicality inference."
-    steering_ref: "docs/evaluations/phase-0-lineage-branching-evaluation.md"
+    steering_prompt: "Evaluate whether a consumer walkthrough distinguishes navigation from endorsement across provenance, support, disagreement, and lineage."
+    steering_ref: "docs/evaluations/phase-0-lineage-traversal-evaluation.md"
     light: green
-    reason_code: lineage_branching_navigation_evaluated
-    evidence_ref: "docs/evaluations/phase-0-lineage-branching-evaluation.md; tests/test_local_experiment.py"
-    summary: "A shared predecessor now exposes lexically ordered declared successors without choosing a canonical branch."
-    evaluated_at: "2026-07-28T02:10:13-05:00"
-    run_ref: RUN-20260728-021013-desoc-progress
+    reason_code: lineage_fork_traversal_evaluated
+    evidence_ref: "docs/evaluations/phase-0-lineage-traversal-evaluation.md; tests/test_local_experiment.py"
+    summary: "Each successor can show the shared predecessor and declared sibling without choosing a branch."
+    evaluated_at: "2026-07-28T07:10:20-05:00"
+    run_ref: RUN-20260728-071020-desoc-progress
     objective: "Evolve the publishing product through shaping, implementation, human-use validation, and evidence-backed disposition."
-    progress_delta: "Implemented and evaluated the declared-successor navigation slice with synthetic fork coverage, JSON parity, and explicit non-canonicality disclosure."
+    progress_delta: "Implemented and evaluated successor-to-sibling traversal with HTML/JSON parity and explicit non-comparison disclosure."
     scope_position: "Offline vertical slice only; production stack, ranking, identity, and launch remain unselected."
     trend_24h: up
     confidence: high
-    recommendation: "Evaluate a bounded traversal from the shared predecessor; keep ranking, identity, network, and launch out of scope."
+    recommendation: "Evaluate a bounded end-to-end consumer walkthrough; keep ranking, identity, network, and launch out of scope."
     findings:
       - "The root entrypoint lists all four artifacts without a hand-maintained index."
       - "The independent artifact is visibly unrelated to the review lineage and preserves a no-predecessor declaration."
