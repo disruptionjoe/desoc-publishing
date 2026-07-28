@@ -172,6 +172,29 @@ class LocalExperimentTests(unittest.TestCase):
                 self.assertIn('../synthetic-review-v2/artifact.html', view)
                 self.assertIn("does not compare, rank, or select", view)
 
+    def test_consumer_orientation_walkthrough_preserves_evidence_boundaries(self) -> None:
+        """A consumer can inspect the full route without a hidden endorsement."""
+        with tempfile.TemporaryDirectory() as temporary:
+            output = Path(temporary) / "output"
+            generate(FIXTURES, output)
+            entrypoint = (output / "index.html").read_text()
+            artifact = (output / "synthetic-review-branch-a" / "artifact.html").read_text()
+            claims = (output / "synthetic-review-branch-a" / "claims.html").read_text()
+            versions = (output / "synthetic-review-branch-a" / "versions.html").read_text()
+
+        self.assertIn('href="synthetic-review-branch-a/artifact.html"', entrypoint)
+        self.assertIn("source: fixtures/synthetic-review-branch-a/", artifact)
+        self.assertIn('href="claims.html"', artifact)
+        self.assertIn("Declared support", claims)
+        self.assertIn("Contesting disagreements", claims)
+        self.assertIn('href="versions.html"', artifact)
+        self.assertIn("Declared lineage context", versions)
+        self.assertIn('../synthetic-review-v2/artifact.html', versions)
+        for view in (entrypoint, artifact, claims, versions):
+            self.assertIn("not a quality ranking", view)
+            self.assertIn("not been verified", view)
+        self.assertIn("does not compare, rank, or select", versions)
+
     def test_fixture_discovery_needs_no_hand_maintained_index(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             fixtures = Path(temporary) / "fixtures"

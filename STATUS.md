@@ -1,6 +1,6 @@
 # Status
 
-Updated: 2026-07-27
+Updated: 2026-07-28
 
 ## Current phase
 
@@ -72,10 +72,16 @@ index exposes the same paths while disclaiming canonicality, preference,
 replacement, or quality. A successor now also exposes its shared predecessor
 and declared sibling continuations in HTML and JSON without comparison or
 selection. The evidence is recorded in
-`docs/evaluations/phase-0-lineage-traversal-evaluation.md`. The next earned
-question is whether a bounded consumer walkthrough can distinguish provenance,
-support, disagreement, and lineage without interpreting navigation as
-endorsement.
+`docs/evaluations/phase-0-lineage-traversal-evaluation.md`.
+
+The bounded consumer-orientation walkthrough is now evaluated. Starting from
+the corpus entry, a consumer can inspect source/provenance, claims and declared
+support, disagreements and version lineage, and a declared sibling while every
+visited view preserves the synthetic, non-quality-ordering, and non-selection
+limits. The evidence is recorded in
+`docs/evaluations/phase-0-consumer-orientation-walkthrough-evaluation.md`.
+The next product question must name a distinct bounded gap; do not add more
+navigation states merely for coverage.
 
 The former shaping, delivery, and evaluation Lanes were consolidated on
 2026-07-25 into phases of the same Lane 1 product lifecycle. Historical
