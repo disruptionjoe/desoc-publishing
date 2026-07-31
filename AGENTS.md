@@ -69,3 +69,29 @@ implementation, human-use validation, and disposition. Research, build, and
 evaluation are treatments inside that lifecycle. Historical Lane 2 and Lane 3
 receipts retain their original meaning; current work uses the mapped phase in
 Lane 1.
+
+## System Execution Boundary
+
+This repository owns its purpose, governance, authoritative work and Lane
+state, domain methods, code and artifacts, evidence, validation, and acceptance
+decisions. Those surfaces are repository state; System execution does not copy
+or overrule their truth.
+
+A governed CapacityOS execution starts from the Brain or CapacityOS entrypoint.
+System Runtime owns its complete execution envelope, working Run Plan,
+lifecycle trace, central owner claim, receipt, execution history, and transport
+under `repos/private/system-runtime/`. Before the first owner write, validate
+the closed envelope and acquire the owner key through
+`repository-execution-claim.sh`; hold it through owner commit and push
+verification, then release it before final Runtime integration.
+
+A direct repository mount may inspect state or perform explicitly
+human-directed non-System work under this repository's governance. It is not a
+governed CapacityOS Run and must not create repository-local CapacityOS plans,
+receipts, claims, or execution memory. Runtime records execution and returns a
+result to the named owner; it cannot decide domain truth, method validity, or
+acceptance.
+
+Pre-cutover execution-like files retained in this repository are frozen domain
+or publication evidence only when listed by checksum in the Runtime migration
+manifest. New or changed CapacityOS execution records belong in Runtime.
