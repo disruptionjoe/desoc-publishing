@@ -20,6 +20,11 @@ SYNTHETIC_NOTICE = (
     "Synthetic fixture: producer identity, authorship, and declared priority "
     "have not been verified."
 )
+PREFLIGHT_NOTICE = (
+    "Structural preflight only: this report checks the portable experiment "
+    "contract. It does not assess research quality, admit content, verify "
+    "identity or authorship, or establish priority."
+)
 MANIFEST_FIELDS = {
     "schema_version",
     "artifact_id",
@@ -221,6 +226,67 @@ def load_corpus(fixtures_root: Path) -> list[Artifact]:
                 f"{artifact.artifact_id}: unresolved supersedes target {supersedes}"
             )
     return artifacts
+
+
+def preflight(fixtures_root: Path) -> dict[str, Any]:
+    """Report structural readiness for every discovered artifact directory.
+
+    Unlike ``load_corpus``, this intentionally collects independent failures so
+    a producer can correct a mixed local corpus in one pass. It performs no
+    writes and makes no judgment about the substance of an artifact.
+    """
+
+    fixtures_root = fixtures_root.resolve()
+    if not fixtures_root.is_dir():
+        raise ManifestError(f"fixtures root does not exist: {fixtures_root}")
+    directories = sorted(
+        (path for path in fixtures_root.iterdir() if path.is_dir() and not path.name.startswith(".")),
+        key=lambda item: item.name,
+    )
+    if not directories:
+        raise ManifestError("fixtures root contains no artifacts")
+
+    entries: list[dict[str, Any]] = []
+    valid: list[Artifact] = []
+    for directory in directories:
+        try:
+            artifact = load_artifact(directory)
+        except ManifestError as exc:
+            entries.append({
+                "directory": directory.name,
+                "status": "needs_correction",
+                "errors": [str(exc)],
+            })
+        else:
+            valid.append(artifact)
+            entries.append({
+                "directory": directory.name,
+                "artifact_id": artifact.artifact_id,
+                "status": "structurally_ready",
+                "errors": [],
+            })
+
+    valid_ids = {artifact.artifact_id for artifact in valid}
+    unresolved = {
+        artifact.artifact_id: artifact.manifest["supersedes"]
+        for artifact in valid
+        if artifact.manifest["supersedes"] is not None
+        and artifact.manifest["supersedes"] not in valid_ids
+    }
+    for entry in entries:
+        artifact_id = entry.get("artifact_id")
+        if artifact_id in unresolved:
+            entry["status"] = "needs_correction"
+            entry["errors"].append(
+                f"{artifact_id}: unresolved supersedes target {unresolved[artifact_id]}"
+            )
+    return {
+        "schema_version": "1.0",
+        "notice": PREFLIGHT_NOTICE,
+        "ordering_rule": "Artifact directories are listed by stable directory name.",
+        "ready": all(entry["status"] == "structurally_ready" for entry in entries),
+        "artifacts": entries,
+    }
 
 
 def render_markdown(markdown: str) -> str:

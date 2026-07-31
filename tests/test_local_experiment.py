@@ -12,6 +12,7 @@ from src.local_experiment import (
     ORDERING_RULE,
     generate,
     load_corpus,
+    preflight,
 )
 
 
@@ -219,6 +220,47 @@ class LocalExperimentTests(unittest.TestCase):
                     "synthetic-review-v3",
                 ],
             )
+
+    def test_preflight_reports_mixed_corpus_without_admitting_content(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            fixtures = Path(temporary) / "fixtures"
+            shutil.copytree(FIXTURES, fixtures)
+            before = source_hashes(fixtures)
+            broken = fixtures / "synthetic-broken"
+            broken.mkdir()
+            (broken / "artifact.json").write_text("{}")
+            (broken / "artifact.md").write_text("# Broken\n")
+
+            report = preflight(fixtures)
+            self.assertFalse((Path(temporary) / "output").exists())
+            self.assertEqual(
+                before,
+                {
+                    path: digest
+                    for path, digest in source_hashes(fixtures).items()
+                    if not path.startswith("synthetic-broken/")
+                },
+            )
+
+        self.assertFalse(report["ready"])
+        self.assertIn("does not assess research quality", report["notice"])
+        self.assertEqual(
+            [item["directory"] for item in report["artifacts"]],
+            [
+                "synthetic-broken",
+                "synthetic-independent-brief",
+                "synthetic-review-branch-a",
+                "synthetic-review-v1",
+                "synthetic-review-v2",
+            ],
+        )
+        broken_report = report["artifacts"][0]
+        self.assertEqual("needs_correction", broken_report["status"])
+        self.assertIn("fields mismatch", broken_report["errors"][0])
+        self.assertTrue(all(
+            item["status"] == "structurally_ready"
+            for item in report["artifacts"][1:]
+        ))
 
     def test_unknown_fields_and_unresolved_relationships_fail_closed(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:

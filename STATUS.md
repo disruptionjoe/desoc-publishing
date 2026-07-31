@@ -20,6 +20,8 @@ explicitly approved public fixtures.
 - Production application stack: not selected
 - Offline experimental slice: evaluated baseline for an independent artifact, a two-version lineage, and one declared lineage fork
 - Generated output: ignored under `_local/experiment/`
+- Producer preflight: dependency-free and structural only; it reports every
+  local artifact directory without making an admission or identity judgment
 - Production application: not yet implemented
 - User-facing launch: not authorized
 - Live submissions or participant data: not authorized
@@ -82,6 +84,13 @@ limits. The evidence is recorded in
 `docs/evaluations/phase-0-consumer-orientation-walkthrough-evaluation.md`.
 The next product question must name a distinct bounded gap; do not add more
 navigation states merely for coverage.
+
+The bounded producer-preflight question is now evaluated. A producer can run
+one offline structural report over the fixture corpus and retain valid entries
+beside precise errors for malformed directories. The report explicitly does
+not assess quality, admit content, verify identity or authorship, or establish
+priority. The evidence is recorded in
+`docs/evaluations/phase-0-producer-preflight-evaluation.md`.
 
 The former shaping, delivery, and evaluation Lanes were consolidated on
 2026-07-25 into phases of the same Lane 1 product lifecycle. Historical

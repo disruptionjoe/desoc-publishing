@@ -1,34 +1,34 @@
 schema_version: "2.0"
 owner_id: desoc-publishing
-updated_at: "2026-07-28T12:10:49-05:00"
-run_ref: RUN-20260728-121049-desoc-progress
-bottom_line: "A consumer can inspect the bounded orientation route without an endorsement or branch-choice inference."
-decision_default: "Name a distinct bounded product gap before further implementation; do not add navigation states for coverage."
+updated_at: "2026-07-31T02:14:14-05:00"
+run_ref: RUN-20260731-021414-desoc-progress
+bottom_line: "A producer can inspect structural readiness without a hidden content-admission or identity claim."
+decision_default: "Name a distinct producer-to-consumer gap; do not expand validation into quality or admission rules."
 needs_joe: false
 lanes:
   - lane_id: "1"
     work_status: moving
-    last_movement: "Evaluated one consumer orientation route across provenance, support, disagreement, lineage, and sibling navigation."
-    movement_ref: "docs/evaluations/phase-0-consumer-orientation-walkthrough-evaluation.md"
+    last_movement: "Evaluated one producer structural-preflight route across a mixed local corpus."
+    movement_ref: "docs/evaluations/phase-0-producer-preflight-evaluation.md"
     steering_attention: none
-    steering_prompt: "Name a distinct bounded product gap before extending the offline slice."
-    steering_ref: "docs/evaluations/phase-0-consumer-orientation-walkthrough-evaluation.md"
+    steering_prompt: "Name a distinct producer-to-consumer gap; keep quality and admission out of structural validation."
+    steering_ref: "docs/evaluations/phase-0-producer-preflight-evaluation.md"
     light: green
-    reason_code: consumer_orientation_walkthrough_evaluated
-    evidence_ref: "docs/evaluations/phase-0-consumer-orientation-walkthrough-evaluation.md; tests/test_local_experiment.py"
-    summary: "One consumer route preserves source, support, disagreement, lineage, and non-endorsement boundaries."
-    evaluated_at: "2026-07-28T12:10:49-05:00"
-    run_ref: RUN-20260728-121049-desoc-progress
+    reason_code: producer_preflight_evaluated
+    evidence_ref: "docs/evaluations/phase-0-producer-preflight-evaluation.md; tests/test_local_experiment.py"
+    summary: "One producer preflight reports structural readiness and correction detail without content admission."
+    evaluated_at: "2026-07-31T02:14:14-05:00"
+    run_ref: RUN-20260731-021414-desoc-progress
     objective: "Evolve the publishing product through shaping, implementation, human-use validation, and evidence-backed disposition."
-    progress_delta: "Added repeatable end-to-end orientation evidence over the existing offline views and disclosures."
+    progress_delta: "Added repeatable producer-side structural readiness evidence over mixed local fixtures."
     scope_position: "Offline vertical slice only; production stack, ranking, identity, and launch remain unselected."
     trend_24h: up
     confidence: high
-    recommendation: "Require a distinct bounded product gap before extending the offline slice; keep ranking, identity, network, and launch out of scope."
+    recommendation: "Require a distinct producer-to-consumer gap; keep quality admission, identity, network, and launch out of scope."
     findings:
-      - "The root entrypoint lists all four artifacts without a hand-maintained index."
-      - "The independent artifact is visibly unrelated to the review lineage and preserves a no-predecessor declaration."
-    decision_default: "Keep the evaluated offline baseline; do not infer launch, identity, ranking, or stack readiness."
+      - "A mixed corpus preserves structurally ready artifacts beside one actionable malformed-directory error."
+      - "The preflight explicitly denies any quality, authorship, priority, or content-admission inference."
+    decision_default: "Keep the evaluated offline baseline; do not infer launch, identity, ranking, admission, or stack readiness."
     needs_joe: false
   - lane_id: A
     work_status: thin
